@@ -17,7 +17,6 @@ const Home = () => {
   const { products,error,loading } = useSelector(
     (state) => state.products
   );
-
    useEffect(() => {
     if(error){ 
       toast.error(error);
@@ -31,21 +30,27 @@ const Home = () => {
       <>
       <MetaData title="Trang chủ" />
       <Header activeHeading={1} />
-    
         {/* Carousel */}
-        <div className="banner mb-50 ">
-               <Carousel>
-                 <img src="https://theme.hstatic.net/200000348893/1000847181/14/collection_banner.jpg?
-                 v=200"         
-                 className="bgImg"/>
-                 <img src="https://s3.nucuoimekong.com/ncmk/wp-content/uploads/dac-san-dong-thap.jpg" 
-                 className="bgImg"/>
-               </Carousel>
+      <div className="flex justify-center "
     
-         </div>
- 
+      >
+        <div className="banner">
+                <Carousel>
+                  <img src="https://theme.hstatic.net/200000348893/1000847181/14/collection_banner.jpg?
+                  v=200"         
+                  className="bgImg"/>
+                  <img src="https://s3.nucuoimekong.com/ncmk/wp-content/uploads/dac-san-dong-thap.jpg" 
+                  className="bgImg"/>
+                </Carousel>
+    
+          </div>
+        
+      </div>
+
+    
+     
+      <div className="container">
       <h2 className="homeHeading ">Xoài các loại </h2>
-      <div className="container" id="container">
         {products &&
             products
             .filter((product) => product.category === 'Thịt' && product.status=="Chưa thanh lý")
@@ -54,6 +59,7 @@ const Home = () => {
             ))}
       </div>
 
+    
 
       <h2 className="homeHeading">Trái cây tươi ngon</h2>
       <div className="container" id="container">
@@ -69,12 +75,11 @@ const Home = () => {
       <h2 className="homeHeading">Gia vị</h2>
       <div className="container" id="container">
         {products &&
-        
-        products
-        .filter((product) => product.category === 'Gia vị' && product.status==="Chưa thanh lý")
-        .map((product) =>(
-          <ProductCard key={product._id} product={product} />
-        ))}
+          products
+          .filter((product) => product.category === 'Gia vị' && product.status==="Chưa thanh lý")
+          .map((product) =>(
+            <ProductCard key={product._id} product={product} />
+          ))}
       </div>
       <ToastContainer 
         position="bottom-center"

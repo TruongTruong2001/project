@@ -72,16 +72,19 @@ const BlogDetails = ({ match, history }) => {
         <Loading />
       ) : (
         <>
-          <MetaData title={`${blog.name}`} />
+          <MetaData title={`${blog.title}`} />
           <Header />
-          <div>
-          {blog.title}
+         <div className="flex justify-center">
+         <div
 
-          
-           </div>
+          className=" w-[70%] m-9 ">
+          <span 
+          dangerouslySetInnerHTML={{__html: 
+          blog.description}} ></span>
 
 
-    
+           </div> 
+         </div>
           <ToastContainer
             position="bottom-center"
             autoClose={3000}

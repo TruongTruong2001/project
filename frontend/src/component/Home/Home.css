@@ -3,11 +3,7 @@
   width: 100%;
   position: relative;
   background-color: #4cabdb;
-}
-.bgImg {
-  width: 100%;
-  height: 100vh;
-  object-fit: cover;
+  margin-bottom: 30px;
 }
 .home__content {
   position: absolute;
@@ -118,14 +114,16 @@ h1.discountPrice {
 }
 .banner {
   height: 80vh;
-  width: 100%;
+  width: 80%;
   position: relative;
   background-color: #4cabdb;
 }
 .bgImg {
   width: 100%;
-  height: 80vh;
-  object-fit: cover;
+  height: auto;
+  object-fit:cover;
+  
+
 }
 .home__content {
   position: absolute !important;
@@ -148,11 +146,12 @@ button.Home__button {
 
 .Carousel-indicators-15 {
  text-align: center;
- margin-top: -20px;
+ 
+ 
+ 
 }
 .homeHeading {
    font-size: 24px;
-    margin: 0 0 8px;
     font-weight: 700;
     padding: 0 10px;
     color: #ffffff;
@@ -162,12 +161,12 @@ button.Home__button {
     box-shadow: 0px 0px 0px 2px rgba(0, 136, 72, 0.8);
     padding: 5px 0px 1px;
     text-align: center;
-    margin: 0 30vmax;
+    margin: 10rem 30vmax;
     border-radius: 50px;
 }
 .container {
   display: flex;
-  margin: 2vmax auto;
+  margin: 0.5vmax auto;
   width: 80vw;
   flex-wrap: wrap;
   justify-content: center;

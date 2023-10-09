@@ -10,8 +10,11 @@ import {
 import MetaData from "../../../more/Metadata";
 import Sidebar from "../Sidebar";
 import { ToastContainer, toast } from 'react-toastify';
+
+import { Button } from "@material-ui/core";
 import { DELETE_BLOG_RESET } from "../../../constans/BlogConstans";
 
+import { Link } from "react-router-dom";
 const AllBlogs = ({history}) => {
     const dispatch = useDispatch();
     const { error, blogs } = useSelector((state) => state.blogs);
@@ -39,13 +42,13 @@ const AllBlogs = ({history}) => {
         dispatch(getAdminBlog());
       }, [dispatch, alert, error, history]);
 
-  const customRowClass = {
-    root: {
-      '&.highlighted': {
-        backgroundColor: 'yellow',
+    const customRowClass = {
+      root: {
+        '&.highlighted': {
+          backgroundColor: 'yellow',
+        },
       },
-    },
-  };
+    };
   const row = [];
   blogs &&
     blogs.forEach((item) => {
@@ -80,45 +83,47 @@ const columns = [
            
         );
     },
+
+
   },
     
 
 
-    // {
-    //   field: "actions",
-    //   flex: 0.2,
-    //   headerName: "Chức năng",
-    //   minWidth: 150,
-    //   type: "number",
-    //   sortable: false,
-    //   renderCell: (params) => {
+    {
+      field: "actions",
+      flex: 0.2,
+      headerName: "Chức năng",
+      minWidth: 150,
+      type: "number",
+      sortable: false,
+      renderCell: (params) => {
        
-    //     return (
-    //       <Fragment>
+        return (
+          <Fragment>
            
-    //         <Link to={`/edit/product/${params.getValue(params.id, "id")}`}>
-    //         <i class="fa-regular fa-pen-to-square" style={{color: "#0c121d"}} ></i>
-    //         </Link> 
+            <Link to={`/edit/blog/${params.getValue(params.id, "id")}`}>
+            <i class="fa-regular fa-pen-to-square" style={{color: "#0c121d"}} ></i>
+            </Link> 
 
-    //         <Button
-    //         onClick={() =>
-    //             deleteProductHandler(params.getValue(params.id, "id"))
-    //           }
-    //         >
-    //          <i class="fa-solid fa-trash"></i>
-    //         </Button>
+            <Button
+            onClick={() =>
+                deleteBlogHandler(params.getValue(params.id, "id"))
+              }
+            >
+             <i class="fa-solid fa-trash"></i>
+            </Button>
            
-    //       </Fragment>
+          </Fragment>
           
-    //     );
-    //   },
-    // },
+        );
+      },
+    },
   ];
 
 
     return (
        <Fragment>
-      <MetaData title={`Danh sách sản phẩm - Admin`} />
+      <MetaData title={`Danh sách blog - Admin`} />
 
       <div className="dashboard">
         <Sidebar />

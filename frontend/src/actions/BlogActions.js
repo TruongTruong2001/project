@@ -129,7 +129,7 @@ export const createBlog = (blogData) => async (dispatch) => {
 };
 
 
-// Get Admin Products -----Admin
+// Get Admin blog -----Admin
   export const getAdminBlog = () => async (dispatch) => {
     try {
       dispatch({ type: ADMIN_BLOG_REQUEST });

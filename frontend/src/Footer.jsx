@@ -1,16 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from "./logo.png"
 const Footer = () => {
   return (
     <div className="Footer flex space__around pz__15" style={{"borderTop":".3px solid rgba(21,21,21,0.5)"}}>
       {/* Footer 1st part */}
       <div className="footer1st">
-        {/* <img
-          src={logo}
-          
-          style={{ cursor: "pointer" ,height:"80px"}}
-        /> */}
+       
         <div className="location flex py__10">
           <svg
             xmlns="http://www.w3.org/2000/svg"

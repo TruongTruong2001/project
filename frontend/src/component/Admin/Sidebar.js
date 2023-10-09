@@ -34,6 +34,9 @@ const Sidebar = () => {
           <Link to="/admin/qrcodes">
               <p className="Dashboard__item"><PostAddIcon /> Danh sách Qrcode</p>
           </Link>
+          <Link to="/admin/blogs">
+              <p className="Dashboard__item"><PostAddIcon /> Danh sách Blog </p>
+          </Link>
 
           <Link to="/admin/product">
              <p><AddIcon />Tạo sản phẩm</p>

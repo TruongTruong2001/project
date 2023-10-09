@@ -12,10 +12,12 @@ import Loading from "../../more/Loader.js";
 import { getAdminProduct } from "../../actions/ProductActions.js";
 import { getAllOrders } from "../../actions/OrderAction.js";
 import { getAllUsers } from "../../actions/userAction.js";
+import { getAdminBlog } from "../../actions/BlogActions";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
   const { products,loading } = useSelector((state) => state.products);
+  const { blogs } = useSelector((state) => state.blogs);
  
   const { orders } = useSelector((state) => state.AllOrders);
   const { users } = useSelector((state) => state.allUsers);
@@ -32,6 +34,7 @@ const Dashboard = () => {
         dispatch(getAdminProduct());
         dispatch(getAllOrders());
         dispatch(getAllUsers());
+        dispatch(getAdminBlog());
         
       }, [dispatch]);    
 
@@ -98,6 +101,10 @@ const Dashboard = () => {
               <Link to="/admin/users">
                 <p>Người dùng</p>
                 <p>{users && users.length}</p>
+              </Link>
+              <Link to="/admin/blogs">
+                <p>Bài Blog</p>
+                <p>{blogs && blogs.length}</p>
               </Link>
             </div>
           </div>

@@ -43,6 +43,7 @@ import AllBlogs from "../../frontend/src/component/Admin/Blog/AllBlogs";
 import AllQuidation from "../../frontend/src/component/Admin/AllQuidation"
 import AllQrcodes from "../../frontend/src/component/Admin/AllQrcodes";
 import EditProduct from "../../frontend/src/component/Admin/EditProduct";
+import EditBlog from "../../frontend/src/component/Admin/Blog/EditBlog";
 import AllOrder from "../../frontend/src/component/Admin/AllOrder";
 import UpdateOrder from "../../frontend/src/component/Admin/UpdateOrder";
 import AllUsers from "../../frontend/src/component/Admin/AllUsers";
@@ -118,6 +119,7 @@ function App() {
          <ProtectedRoute isAdmin={true} exact path="/admin/quidation" component={AllQuidation} />
          <ProtectedRoute isAdmin={true} exact path="/edit/qrcode/:id" component={EditQrcode} />
          <ProtectedRoute isAdmin={true} exact path="/edit/product/:id" component={EditProduct} />
+         <ProtectedRoute isAdmin={true} exact path="/edit/blog/:id" component={EditBlog} />
          <ProtectedRoute isAdmin={true} exact path="/admin/orders" component={AllOrder} />
          <ProtectedRoute isAdmin={true} exact path="/admin/order/:id" component={UpdateOrder} />
          <ProtectedRoute isAdmin={true} exact path="/admin/users" component={AllUsers} />

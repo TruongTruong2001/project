@@ -1,15 +1,15 @@
 import React, { Fragment, useEffect, useState } from "react";
-import MetaData from "../../more/Metadata";
+import MetaData from "../../more/Metadata.jsx";
 import { Link } from "react-router-dom";
 import { Typography } from "@material-ui/core";
-import SideBar from "./Sidebar";
+import SideBar from "./Sidebar.jsx";
 import {
   getOrderDetails,
   clearErrors,
   updateOrder,
 } from "../../actions/OrderAction";
 import { useSelector, useDispatch } from "react-redux";
-import Loading from "../../more/Loader";
+import Loading from "../../more/Loader.jsx";
 import AccountTreeIcon from "@material-ui/icons/AccountTree";
 import { Button } from "@material-ui/core";
 import { UPDATE_ORDER_RESET } from "../../constans/OrderConstans";

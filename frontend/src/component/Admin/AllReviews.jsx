@@ -8,10 +8,10 @@ import {
   deleteReviews,
 } from "../../actions/ProductActions";
 import { Button } from "@material-ui/core";
-import MetaData from "../../more/Metadata";
+import MetaData from "../../more/Metadata.jsx";
 import DeleteIcon from "@material-ui/icons/Delete";
 import Star from "@material-ui/icons/Star";
-import SideBar from "./Sidebar";
+import SideBar from "./Sidebar.jsx";
 import { DELETE_REVIEW_RESET } from "../../constans/ProductConstans";
 import { ToastContainer, toast } from 'react-toastify';
 

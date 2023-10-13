@@ -7,7 +7,7 @@ import ProductCard from "./ProductCard";
 import { clearErrors, getProduct } from "../../actions/ProductActions";
 import Pagination from "react-js-pagination";
 import "./Product.css";
-import MetaData from "../../more/Metadata";
+import MetaData from "../../more/Metadata.jsx";
 import Typography from"@material-ui/core/Typography"
 // import { useAlert } from "react-alert";
 import BottomTab from "../../more/BottomTab";

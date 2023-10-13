@@ -1,9 +1,9 @@
 import React, { Fragment, useState, useEffect } from "react";
 import "./ResetPassword.css";
-import Loading from "../../more/Loader";
+import Loading from "../../more/Loader.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { clearErrors, resetPassword } from "../../actions/userAction";
-import MetaData from "../../more/Metadata";
+import MetaData from "../../more/Metadata.jsx";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import LockIcon from "@material-ui/icons/Lock";
 import { ToastContainer, toast } from 'react-toastify';

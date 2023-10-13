@@ -1,9 +1,9 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
 import "./CommingSoon.css";
-import BottomTab from './BottomTab';
-import Loading from './Loader';
-import MetaData from './Metadata';
+import BottomTab from './BottomTab.jsx';
+import Loading from './Loader.jsx';
+import MetaData from './Metadata.jsx';
 
 const CommingSoon = () => {
 

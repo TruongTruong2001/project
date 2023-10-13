@@ -1,9 +1,9 @@
 import React from 'react'
 import "./Rules.css";
-import Header from '../component/Home/Header';
-import BottomTab from './BottomTab';
-import MetaData from './Metadata';
-import Footer from '../Footer';
+import Header from '../component/Home/Header.jsx';
+import BottomTab from './BottomTab.jsx';
+import MetaData from './Metadata.jsx';
+import Footer from '../Footer.jsx';
 
 const Rules = () => {
     return (

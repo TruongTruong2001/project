@@ -1,11 +1,11 @@
 import React from "react";
 import "./ConfirmOrder.css";
 import { useSelector } from "react-redux";
-import CheckoutSteps from "./CheckoutSteps";
-import MetaData from "../../more/Metadata";
+import CheckoutSteps from "./CheckoutSteps.jsx";
+import MetaData from "../../more/Metadata.jsx";
 import { Link } from "react-router-dom";
 import { Typography } from "@material-ui/core";
-import BottomTab from "../../more/BottomTab";
+import BottomTab from "../../more/BottomTab.jsx";
 
 
 const ConfirmOrder = ({ history }) => {

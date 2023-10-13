@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react'
-import MetaData from './Metadata';
+import MetaData from './Metadata.jsx';
 import "./Support.css";
 import emailjs from "@emailjs/browser";
 import BottomTab from './BottomTab.jsx';

@@ -3,14 +3,14 @@ import "./newProduct.css";
 import { useSelector, useDispatch } from "react-redux";
 import { clearErrors, updateProduct, getProductDetails } from "../../actions/ProductActions";
 import { Button } from "@material-ui/core";
-import MetaData from "../../more/Metadata";
+import MetaData from "../../more/Metadata.jsx";
 import AccountTreeIcon from "@material-ui/icons/AccountTree";
 import SpellcheckIcon from "@material-ui/icons/Spellcheck";
 import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
     // eslint-disable-next-line
 import DiscountIcon from "@material-ui/icons/LocalOffer";
 
-import SideBar from "./Sidebar";
+import SideBar from "./Sidebar.jsx";
 import { UPDATE_PRODUCT_RESET } from "../../constans/ProductConstans";
 import WarehouseIcon from '@mui/icons-material/Warehouse';
 import "react-quill/dist/quill.snow.css";

@@ -9,10 +9,8 @@ import {
 } from "../../actions/QrcodeAction";
 import { Link } from "react-router-dom";
 import { Button } from "@material-ui/core";
-import MetaData from "../../more/Metadata";
-import EditIcon from "@material-ui/icons/Edit";
-import DeleteIcon from "@material-ui/icons/Delete";
-import SideBar from "./Sidebar";
+import MetaData from "../../more/Metadata.jsx";
+import SideBar from "./Sidebar.jsx";
 import { ToastContainer, toast } from 'react-toastify';
 import { DELETE_QRCODE_RESET } from "../../constans/QrcodeConstans";
 // import { getAdminQrcodes } from "../../actions/QrcodeAction";

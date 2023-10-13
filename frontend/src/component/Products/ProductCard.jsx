@@ -12,7 +12,6 @@ const ProductCard = ({ product }) => {
   
   return (
     <>
-    
       <div className="ProductCard ">
         
             <img
@@ -55,7 +54,7 @@ const ProductCard = ({ product }) => {
                   <button class="button-48 " role="button">
                   <span class="text mt-3 "> <LocalMallIcon id="icon-mall"
                   />  
-                    Chọn mua 
+                    MUA NGAY
                   </span>
                 </button>
               </Link>

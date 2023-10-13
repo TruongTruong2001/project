@@ -1,6 +1,6 @@
 import React, { useState, Fragment } from "react";
-import BottomTab from "../../more/BottomTab";
-import MetaData from "../../more/Metadata";
+import BottomTab from "../../more/BottomTab.jsx";
+import MetaData from "../../more/Metadata.jsx";
 import "./Search.css";
 
 const Search = ({ history }) => {

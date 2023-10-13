@@ -6,10 +6,10 @@ import { Typography } from "@material-ui/core";
 import RemoveShoppingCartIcon from "@material-ui/icons/FavoriteBorder";
 import { Link } from "react-router-dom";
 import FavouriteItemsCard from './FavouriteItemsCard.jsx';
-import MetaData from '../../more/Metadata';
-import Loading from '../../more/Loader';
+import MetaData from '../../more/Metadata.jsx';
+import Loading from '../../more/Loader.jsx';
 import { useState } from "react";
-import BottomTab from '../../more/BottomTab';
+import BottomTab from '../../more/BottomTab.jsx';
 
 const Favourite = ({history}) => {
     const dispatch = useDispatch();

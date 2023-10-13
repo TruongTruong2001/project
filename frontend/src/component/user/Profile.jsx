@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link } from 'react-router-dom'
-import Footer from "../../Footer";
-import Header from "../Home/Header";
-import MetaData from "../../more/Metadata";
-import Loading from "../../more/Loader";
+import Footer from "../../Footer.jsx";
+import Header from "../Home/Header.jsx";
+import MetaData from "../../more/Metadata.jsx";
+import Loading from "../../more/Loader.jsx";
 import "./Profile.css";
-import BottomTab from "../../more/BottomTab";
+import BottomTab from "../../more/BottomTab.jsx";
 
 const Profile = ({history }) => {
 

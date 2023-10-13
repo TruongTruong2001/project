@@ -7,8 +7,8 @@ import {
   getAdminBlog,
 } from "../../../actions/BlogActions";
 
-import MetaData from "../../../more/Metadata";
-import Sidebar from "../Sidebar";
+import MetaData from "../../../more/Metadata.jsx";
+import Sidebar from "../Sidebar.jsx";
 import { ToastContainer, toast } from 'react-toastify';
 
 import { Button } from "@material-ui/core";
@@ -74,11 +74,18 @@ const columns = [
          <frameElement className=" flex">
          
                <img
-                  style={{width:"38px"}}
+                  style={{
+                  width:"45px",
+                  borderRadius: "50%",
+                  border:"1px solid #a1a1a1",
+                  height: "42px",
+                  margin: "20px" ,
+                
+                }}
                   src={params.row.images[0].url}
                   className="ProductImg"
                 />
-                <span> {params.row.title}</span>
+                <span className="mt-3"> {params.row.title}</span>
              </frameElement>
            
         );

@@ -10,8 +10,8 @@ import {
 } from "../../actions/ProductActions";
 import { Link } from "react-router-dom";
 import { Button } from "@material-ui/core";
-import MetaData from "../../more/Metadata";
-import SideBar from "./Sidebar";
+import MetaData from "../../more/Metadata.jsx";
+import SideBar from "./Sidebar.jsx";
 import Box from '@mui/material/Box';
 import { ToastContainer, toast } from 'react-toastify';
 import { DELETE_PRODUCT_RESET } from "../../constans/ProductConstans";

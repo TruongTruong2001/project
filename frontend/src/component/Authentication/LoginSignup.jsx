@@ -1,13 +1,14 @@
-import { React, useEffect, useRef, useState } from "react";
+import React from "react";
+import { useEffect, useRef, useState } from "react";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import FaceIcon from "@material-ui/icons/Face";
 import { Link } from "react-router-dom";
 import "./LoginSignup.css";
 import { useDispatch, useSelector } from "react-redux";
-import Loader from "../../more/Loader";
+import Loader from "../../more/Loader.jsx";
 import { clearErrors, login, register } from "../../actions/userAction";
-import MetaData from "../../more/Metadata";
+import MetaData from "../../more/Metadata.jsx";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -106,13 +107,13 @@ const LoginSignup = ({ history, location }) => {
         <Loader />
       ) : (
         <>
-          <MetaData title="Login or Signup" />
+          <MetaData title="Đăng nhập/Đăng ký" />
           <div className="LoginSignUpContainer">
             <div className="LoginSignUpBox">
               <div>
                 <div className="login_signUp_toggle">
-                  <p onClick={(e) => switchTabs(e, "login")}>LOGIN</p>
-                  <p onClick={(e) => switchTabs(e, "register")}>REGISTER</p>
+                  <p onClick={(e) => switchTabs(e, "login")}>Đăng nhập</p>
+                  <p onClick={(e) => switchTabs(e, "register")}>Đăng ký</p>
                 </div>
                 <button ref={switcherTab}></button>
               </div>
@@ -137,10 +138,10 @@ const LoginSignup = ({ history, location }) => {
                     onChange={(e) => setLoginPassword(e.target.value)}
                   />
                 </div>
-                <Link to="/password/forgot">Forgot Password ?</Link>
+                <Link to="/password/forgot">Quên mật khuẩu ?</Link>
                 <input type="submit" value="Login" className="loginBtn" />
                 <Link to="/">
-                  <span>Login as a guest ?</span>
+                  <span>Chưa có tài khoản?</span>
                 </Link>
               </form>
 

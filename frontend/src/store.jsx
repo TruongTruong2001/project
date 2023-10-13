@@ -9,7 +9,7 @@ import {
   productDetailsReducer,
   productReviewsReducer,
   productsReducer,
-} from "./reducers/ProductReducer";
+} from "./reducers/ProductReducer.jsx";
 
 import {
   deleteBlogReducer, 
@@ -19,17 +19,17 @@ import {
   blogDetailsReducer,
   // blogReviewsReducer,
   blogsReducer,
-} from "./reducers/BlogReducer";
+} from "./reducers/BlogReducer.jsx";
 
 import {
   deleteQrcodeReducer,
   newQrcodeReducer,
   qrcodeDetailsReducer,
   qrcodesReducer,
-} from "./reducers/QrcodeReducer";
-import { allUsersReducer, forgotPasswordReducer, profileReducer, userDetailsReducer, userReducer } from "./reducers/userReducer";
-import { cartReducer } from "./reducers/CartReducer";
-import { favouriteReducer } from "./reducers/FavouriteReducer";
+} from "./reducers/QrcodeReducer.jsx";
+import { allUsersReducer, forgotPasswordReducer, profileReducer, userDetailsReducer, userReducer } from "./reducers/userReducer.jsx";
+import { cartReducer } from "./reducers/CartReducer.jsx";
+import { favouriteReducer } from "./reducers/FavouriteReducer.jsx";
 import {
   allOrdersReducer,
   myOrdersReducer,
@@ -37,7 +37,7 @@ import {
   orderDetailsReducer,
   orderReducer,
   orderPayReducer,
-} from "./reducers/OrderReducer";
+} from "./reducers/OrderReducer.jsx";
 
 const reducer = combineReducers({
   products: productsReducer,

@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
 import "./Home.css";
 import Carousel from "react-material-ui-carousel";
-import ProductCard from "../Products/ProductCard";
+import ProductCard from "../Products/ProductCard.jsx";
 import  {useDispatch, useSelector} from "react-redux"
 import { clearErrors, getProduct } from "../../actions/ProductActions";
-import Header from "./Header";
-import MetaData from "../../more/Metadata";
-import Footer from "../../Footer";
-import BottomTab from "../../more/BottomTab";
-import Loading from "../../more/Loader";
+import Header from "./Header.jsx";
+import MetaData from "../../more/Metadata.jsx";
+import Footer from "../../Footer.jsx";
+import BottomTab from "../../more/BottomTab.jsx";
+import Loading from "../../more/Loader.jsx";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -32,7 +32,7 @@ const Home = () => {
       <Header activeHeading={1} />
         {/* Carousel */}
       <div className="flex justify-center "
-    
+
       >
         <div className="banner">
                 <Carousel>

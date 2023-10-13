@@ -1,11 +1,11 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import Footer from "../../Footer";
-import Header from "../Home/Header";
-import Loading from "../../more/Loader";
-import MetaData from "../../more/Metadata";
+import Footer from "../../Footer.jsx";
+import Header from "../Home/Header.jsx";
+import Loading from "../../more/Loader.jsx";
+import MetaData from "../../more/Metadata.jsx";
 import "./About.css";
-import BottomTab from "../../more/BottomTab";
+import BottomTab from "../../more/BottomTab.jsx";
 
 const About = () => {
     const { loading } = useSelector(

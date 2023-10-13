@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState } from "react";
-import CheckoutSteps from "./CheckoutSteps";
+import CheckoutSteps from "./CheckoutSteps.jsx";
 import { useSelector, useDispatch } from "react-redux";
-import MetaData from "../../more/Metadata";
+import MetaData from "../../more/Metadata.jsx";
 import { Typography } from "@material-ui/core";
 
 import axios from "axios";
@@ -9,7 +9,7 @@ import "./payment.css";
 import { createOrder, clearErrors } from "../../actions/OrderAction";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Loading from "../../more/Loader";
+import Loading from "../../more/Loader.jsx";
 import { savePaymentMethod } from "../../actions/CartAction";
 
 const Payment = ({ history }) => {

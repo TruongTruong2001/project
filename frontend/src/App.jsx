@@ -38,23 +38,23 @@ import CreateProduct from './component/Admin/CreateProduct';
 import CreateBlog from './component/Admin/Blog/CreateBlog';
 import BlogDetails from "./component/Blogs/BlogDetails";
 import './App.css';
-import AllProducts from "../../frontend/src/component/Admin/AllProducts";
-import AllBlogs from "../../frontend/src/component/Admin/Blog/AllBlogs";
-import AllQuidation from "../../frontend/src/component/Admin/AllQuidation"
-import AllQrcodes from "../../frontend/src/component/Admin/AllQrcodes";
-import EditProduct from "../../frontend/src/component/Admin/EditProduct";
-import EditBlog from "../../frontend/src/component/Admin/Blog/EditBlog";
-import AllOrder from "../../frontend/src/component/Admin/AllOrder";
-import UpdateOrder from "../../frontend/src/component/Admin/UpdateOrder";
-import AllUsers from "../../frontend/src/component/Admin/AllUsers";
-import UpdateUser from "../../frontend/src/component/Admin/UpdateUser";
-import AllReviews from "../../frontend/src/component/Admin/AllReviews";
-import ForgotPassword from "../../frontend/src/component/user/ForgotPassword";
-import ResetPassword from "../../frontend/src/component/user/ResetPassword";
-import Notfound from "../../frontend/src/more/Notfound";
+import AllProducts from "./component/Admin/AllProducts";
+import AllBlogs from "./component/Admin/Blog/AllBlogs";
+import AllQuidation from "./component/Admin/AllQuidation"
+import AllQrcodes from "./component/Admin/AllQrcodes";
+import EditProduct from "./component/Admin/EditProduct";
+import EditBlog from "./component/Admin/Blog/EditBlog";
+import AllOrder from "./component/Admin/AllOrder";
+import UpdateOrder from "./component/Admin/UpdateOrder";
+import AllUsers from "./component/Admin/AllUsers";
+import UpdateUser from "./component/Admin/UpdateUser";
+import AllReviews from "./component/Admin/AllReviews";
+import ForgotPassword from "./component/user/ForgotPassword";
+import ResetPassword from "./component/user/ResetPassword";
+import Notfound from "./more/Notfound";
 import PlaceOrder from './component/cart/PlaceOrder';
 import Qrcode from "./component/Admin/Qrcode";
-import EditQrcode from "../../frontend/src/component/Admin/EditQrcode";
+import EditQrcode from "./component/Admin/EditQrcode";
 import Vnpay from './component/cart/Vnpay';
 function App() {
   

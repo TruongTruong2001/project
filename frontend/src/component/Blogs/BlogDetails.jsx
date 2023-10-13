@@ -1,21 +1,20 @@
 import React, { useEffect, useState } from "react";
-import Carousel from "react-material-ui-carousel";
 import { useDispatch, useSelector } from "react-redux";
 import {
   clearErrors,
   getBlogDetails,
   newReview,
 } from "../../actions/BlogActions";
-import Footer from "../../Footer";
-import MetaData from "../../more/Metadata";
-import Header from "../Home/Header";
+import Footer from "../../Footer.jsx";
+import MetaData from "../../more/Metadata.jsx";
+import Header from "../Home/Header.jsx";
 import { Rating } from "@material-ui/lab";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { NEW_REVIEW_RESET } from "../../constans/BlogConstans";
-import BottomTab from "../../more/BottomTab";
-import Loading from "../../more/Loader";
+import BottomTab from "../../more/BottomTab.jsx";
+import Loading from "../../more/Loader.jsx";
 
 const BlogDetails = ({ match, history }) => {
 

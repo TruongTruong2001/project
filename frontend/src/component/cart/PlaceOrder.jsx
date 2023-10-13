@@ -1,15 +1,15 @@
 import React from "react";
 import "./ConfirmOrder.css";
 import { useDispatch, useSelector } from "react-redux";
-import CheckoutSteps from "./CheckoutSteps";
+import CheckoutSteps from "./CheckoutSteps.jsx";
 import { Link } from "react-router-dom";
 import { Typography } from "@material-ui/core";
-import BottomTab from "../../more/BottomTab";
+import BottomTab from "../../more/BottomTab.jsx";
 import {ORDER_CREATE_RESET} from "../../constans/OrderConstans"
 import {createOrder} from "../../actions/OrderAction";
 import { ToastContainer, toast } from 'react-toastify';
 import { useEffect } from "react";
-import Loading from "../../more/Loader";
+import Loading from "../../more/Loader.jsx";
 
 export default function PlaceOrder({history}) {
       window.scrollTo(0,0);

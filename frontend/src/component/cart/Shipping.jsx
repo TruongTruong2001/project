@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Shipping.css";
 import { useSelector, useDispatch } from "react-redux";
-import CheckoutSteps from "../cart/CheckoutSteps.jsx";
+import CheckoutSteps from "./CheckoutSteps";
 import MetaData from "../../more/Metadata";
 import HomeIcon from "@material-ui/icons/Home";
 import PublicIcon from "@material-ui/icons/Public";

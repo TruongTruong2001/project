@@ -4,10 +4,10 @@ import LocalShippingIcon from "@material-ui/icons/LocalShipping";
 import LibraryAddCheckIcon from "@material-ui/icons/LibraryAddCheck";
 import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
 import "./CheckoutSteps.css";
-import credit from "./credit-card.png"
+import credit from "./credit-card.jpg"
 import methods from "./methods.png"
 import shipped from "./shipped.png"
-import BottomTab from "../../more/BottomTab";
+import BottomTab from "../../more/BottomTab.jsx";
 
 const CheckoutSteps = ({ activeStep }) => {
   const steps = [

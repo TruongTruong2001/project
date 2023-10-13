@@ -2,9 +2,9 @@ import React, { Fragment, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { clearErrors, updateBlog, getBlogDetails } from "../../../actions/BlogActions";
 import { Button } from "@material-ui/core";
-import MetaData from "../../../more/Metadata";
+import MetaData from "../../../more/Metadata.jsx";
 import SpellcheckIcon from "@material-ui/icons/Spellcheck";
-import SideBar from "../Sidebar";
+import SideBar from "../Sidebar.jsx";
 import { UPDATE_BLOG_RESET } from "../../../constans/BlogConstans";
 import "react-quill/dist/quill.snow.css";
 import { ToastContainer, toast } from 'react-toastify';
@@ -37,7 +37,9 @@ const modules = {
   },
   imageResize: {
     parchment: Quill.import('parchment'),
-    modules: ['Resize', 'DisplaySize','Toolbar']
+    modules: ['Resize', 'DisplaySize','Toolbar'],
+    editable: true,
+    
   },
   
  
@@ -229,7 +231,7 @@ const UpdateBlog = ({ history, match }) => {
       </div>
       <ToastContainer 
         position="bottom-center"
-        autoClose={2000}
+        autoClose={200}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick

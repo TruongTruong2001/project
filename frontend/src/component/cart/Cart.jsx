@@ -5,11 +5,11 @@ import { addItemsToCart, removeItemsFromCart } from "../../actions/CartAction";
 import { Typography } from "@material-ui/core";
 import RemoveShoppingCartIcon from "@material-ui/icons/RemoveShoppingCart";
 import { Link } from "react-router-dom";
-import CartItemCard from "./CartItemCard.js";
-import BottomTab from "../../more/BottomTab";
+import CartItemCard from "./CartItemCard.jsx";
+import BottomTab from "../../more/BottomTab.jsx";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Header from "../Home/Header";
+import Header from "../Home/Header.jsx";
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 const Cart = ({ history }) => {

@@ -1,14 +1,12 @@
 import React, { useEffect,useState } from "react";
 import "./orderDetails.css";
 import { useSelector, useDispatch } from "react-redux";
-import MetaData from "../../more/Metadata";
+import MetaData from "../../more/Metadata.jsx";
 import { Link } from "react-router-dom";
 import { Typography } from "@material-ui/core";
 import { getOrderDetails, clearErrors } from "../../actions/OrderAction";
-
-
-import Loading from "../../more/Loader";
-import BottomTab from "../../more/BottomTab";
+import Loading from "../../more/Loader.jsx";
+import BottomTab from "../../more/BottomTab.jsx";
 // import { PayPalButton } from "react-paypal-button-v2";
 
 const MyOrderDetails = ({ match }) => {

@@ -4,10 +4,10 @@ import "./myOrders.css";
 import { useSelector, useDispatch } from "react-redux";
 import { clearErrors, myOrders } from "../../actions/OrderAction";
 import { Link } from "react-router-dom";
-import MetaData from "../../more/Metadata";
+import MetaData from "../../more/Metadata.jsx";
 import LaunchIcon from "@material-ui/icons/Launch";
-import Loading from "../../more/Loader";
-import BottomTab from "../../more/BottomTab";
+import Loading from "../../more/Loader.jsx";
+import BottomTab from "../../more/BottomTab.jsx";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 

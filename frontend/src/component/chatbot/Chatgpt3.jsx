@@ -1,12 +1,11 @@
 import { useState } from 'react'
 import './Chat.css'
-import Header from '../Home/Header';
+import Header from '../Home/Header.jsx';
 import '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
-import { MainContainer, ChatContainer, MessageList, Message, MessageInput, TypingIndicator } from '@chatscope/chat-ui-kit-react';
-import qs from 'qs';
+import {  MessageList, Message, MessageInput, TypingIndicator } from '@chatscope/chat-ui-kit-react';
 import SettingsVoiceIcon from '@mui/icons-material/SettingsVoice';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
-import logo from './chatbot.png'
+import logo from "./chatbot.png";
 const API_KEY = "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";
 // "Explain things like you would to a 10 year old learning how to code."
 const systemMessage = { //  Explain things like you're talking to a software professional with 5 years of experience.

@@ -4,13 +4,11 @@ import "./Header.css";
 import { Link } from "react-router-dom";
 import { useSelector ,useDispatch} from "react-redux";
 import SearchIcon from '@mui/icons-material/Search';
-import { backend_url } from "../../server";
-import Navbar from "./Navbar";
+import Navbar from "./Navbar.jsx";
 const Header = ({activeHeading}) => {
     const { cartItems } = useSelector((state) => state.cart);
     const { favouriteItems } = useSelector((state) => state.favourite);
     const [searchData, setSearchData] = useState(null);
-    const [active, setActive] = useState(false);
     const [searchTerm, setSearchTerm] = useState("");
     const dispatch = useDispatch();
     const { products,error,loading } = useSelector(
@@ -29,7 +27,6 @@ const Header = ({activeHeading}) => {
         });
       }); 
 
-      
   const handleSearchChange = (e) => {
     const term = e.target.value;
     setSearchTerm(term);
@@ -42,6 +39,11 @@ const Header = ({activeHeading}) => {
      setSearchData(filteredProducts);
   };
 
+  const handleBlur = () => {
+    // Ẩn kết quả tìm kiếm khi người dùng click chuột ra khỏi thanh tìm kiếm
+    setSearchData("");
+};
+
   return (
   <>
          <div className="Header">
@@ -49,25 +51,25 @@ const Header = ({activeHeading}) => {
               <div className="w-[250px] pxy-8 flex mb-2 ml-8">
                   <img src="https://theme.hstatic.net/200000348893/1000847181/14/logo.png?v=200" alt="" 
           
-          />
+          />  
     </div>
     {/* Header Navbar */}
           <div className=" flex pz__10 space__beetween" ref={switcherTab} id="navbar">
             <div
             className="navigation"
-            style={{
+            style={{  
               padding:"0px 50px"
             }}
             >
       
-        <div className="w-[40vmax]  relative">
+        <div className="w-[40vmax] relative">
             <input
               type="search"
               placeholder="Tìm kiếm sản phẩm"
               value={searchTerm}
               onChange={handleSearchChange}
               className="h-[43px] w-full px-2 border-[#3957db] border-[2px] rounded-md"
-             
+             onBlur={handleBlur}
             />
             <SearchIcon
               size={20}
@@ -75,25 +77,25 @@ const Header = ({activeHeading}) => {
             />
                {searchData && searchData.length !== 0 ? (
               <div className=" absolute min-h-[30vh] bg-slate-50 shadow-sm-2 z-[9] p-4"
-              id="search1"
+              
               >
                 {searchData &&
                   searchData.map((i, index) => {
                     return (
-                      <Link to={`/product/${i._id}`}>
-                        <div className="w-full flex items-start-py-3">
+                      <Link to={`/product/${i._id}`} className="hover:no-underline">
+                        <div className="w-full  flex items-start-py-3 ">
                           <img
                             src={`${i.images[0].url}`}
                             alt=""
-                            className="w-[40px] h-[40px] mr-[10px]"
+                            className="w-[30px] h-[30px] mr-[15px]"
                           />
-                          <h1>{i.name}</h1>
+                          <h1 className=" text-xl">{i.name}</h1>
                         </div>
                       </Link>
                     );
                   })}
               </div>
-            ) : null}
+            ) : null }
                 
               
           </div>

@@ -5,20 +5,20 @@ import {
   clearErrors,
   getProductDetails,
   newReview,
-} from "../../actions/ProductActions";
-import Footer from "../../Footer";
-import MetaData from "../../more/Metadata";
-import Header from "../Home/Header";
+} from "../../actions/ProductActions.jsx";
+import Footer from "../../Footer.jsx";
+import MetaData from "../../more/Metadata.jsx";
+import Header from "../Home/Header.jsx";
 import "./style.css";
 import { Rating } from "@material-ui/lab";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { addItemsToCart } from "../../actions/CartAction";
-import { addFavouriteItemsToCart } from "../../actions/FavouriteAction";
+import { addItemsToCart } from "../../actions/CartAction.jsx";
+import { addFavouriteItemsToCart } from "../../actions/FavouriteAction.jsx";
 import ReviewCard from "./ReviewCard.jsx";
 import { NEW_REVIEW_RESET } from "../../constans/ProductConstans";
-import BottomTab from "../../more/BottomTab";
-import Loading from "../../more/Loader";
+import BottomTab from "../../more/BottomTab.jsx";
+import Loading from "../../more/Loader.jsx";
 import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';

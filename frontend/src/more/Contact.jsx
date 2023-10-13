@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import React from "react";
-import Footer from "../Footer";
-import Header from "../component/Home/Header";
-import MetaData from "./Metadata";
-import BottomTab from "./BottomTab";
+import Footer from "../Footer.jsx";
+import Header from "../component/Home/Header.jsx";
+import MetaData from "./Metadata.jsx";
+import BottomTab from "./BottomTab.jsx";
 
 const Contact = () => {
   return (

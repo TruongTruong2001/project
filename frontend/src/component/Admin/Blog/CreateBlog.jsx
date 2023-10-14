@@ -1,14 +1,12 @@
 import React, { Fragment, useEffect, useState } from "react";
-import "../newProduct.css";
+import "../Product/newProduct.css";
 import { useSelector, useDispatch } from "react-redux";
 import { clearErrors, createBlog } from "../../../actions/BlogActions";
 import { Button } from "@material-ui/core";
-import MetaData from "../../../more/Metadata.jsx";
-import StorageIcon from "@material-ui/icons/Storage";
+import MetaData from "../../../more/Metadata";
+
 import SpellcheckIcon from "@material-ui/icons/Spellcheck";
-import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
-import DiscountIcon from "@material-ui/icons/LocalOffer";
-import SideBar from "../Sidebar.jsx";
+import Sidebar from "../Sidebar/Sidebar";
 import { NEW_BLOG_RESET } from "../../../constans/BlogConstans";
 import { ToastContainer, toast } from 'react-toastify';
 import Grid3x3Icon from '@mui/icons-material/Grid3x3';
@@ -125,7 +123,7 @@ const CreateBlog = ({ history }) => {
     <Fragment>
       <MetaData title="Tạo blog" />
       <div className="dashboard">
-        <SideBar />
+        <Sidebar />
         <div className="newProductContainer">
           <form
             className="createProductForm"

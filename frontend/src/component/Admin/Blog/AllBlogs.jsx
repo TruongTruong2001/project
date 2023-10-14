@@ -7,8 +7,8 @@ import {
   getAdminBlog,
 } from "../../../actions/BlogActions";
 
-import MetaData from "../../../more/Metadata.jsx";
-import Sidebar from "../Sidebar.jsx";
+import MetaData from "../../../more/Metadata";
+import { Sidebar } from "@chatscope/chat-ui-kit-react";
 import { ToastContainer, toast } from 'react-toastify';
 
 import { Button } from "@material-ui/core";

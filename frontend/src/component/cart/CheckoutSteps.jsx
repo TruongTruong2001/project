@@ -1,27 +1,30 @@
 import React from "react";
 import { Typography, Stepper, StepLabel, Step } from "@material-ui/core";
-import LocalShippingIcon from "@material-ui/icons/LocalShipping";
-import LibraryAddCheckIcon from "@material-ui/icons/LibraryAddCheck";
-import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
 import "./CheckoutSteps.css";
-import credit from "./credit-card.jpg"
-import methods from "./methods.png"
-import shipped from "./shipped.png"
-import BottomTab from "../../more/BottomTab.jsx";
-
+import FireTruckIcon from '@mui/icons-material/FireTruck';
+import BottomTab from "../../more/BottomTab";
+import PaidIcon from '@mui/icons-material/Paid';
+import PaymentIcon from '@mui/icons-material/Payment';
 const CheckoutSteps = ({ activeStep }) => {
   const steps = [
     {
       label: <Typography>Thông tin giao hàng</Typography>,
-        icon: <img  style={{width:"30px"}} src={shipped} alt="#" />
+        icon: <FireTruckIcon
+        style={{width:"40px", height:"40px"}}
+      
+        />
       },
     {
       label: <Typography>Phương thức thanh toán</Typography>,
-      icon: <img  style={{width:"30px"}} src={methods} alt="#" />
+      icon: <PaidIcon  
+      style={{width:"40px", height:"40px"}}
+      />
     },
     {
       label: <Typography>Thanh toán</Typography>,
-      icon: <img  style={{width:"30px"}} src={credit} alt="#" />
+      icon: <PaymentIcon
+      style={{width:"40px", height:"40px"}}
+      />
     },
   ];
 
@@ -40,7 +43,7 @@ const CheckoutSteps = ({ activeStep }) => {
           >
             <StepLabel
               style={{
-                color: activeStep >= index ? "#3BB77E" : "rgba(0, 0, 0, 0.649)",
+                color: activeStep >= index ? "green" : "rgba(0, 0, 0, 0.649)",
               }}
               icon={item.icon}
             >

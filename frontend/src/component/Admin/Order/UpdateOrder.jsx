@@ -1,18 +1,18 @@
 import React, { Fragment, useEffect, useState } from "react";
-import MetaData from "../../more/Metadata.jsx";
+import MetaData from "../../../more/Metadata.jsx";
 import { Link } from "react-router-dom";
 import { Typography } from "@material-ui/core";
-import SideBar from "./Sidebar.jsx";
+import SideBar from "../Sidebar/Sidebar.jsx";
 import {
   getOrderDetails,
   clearErrors,
   updateOrder,
-} from "../../actions/OrderAction";
+} from "../../../actions/OrderAction.jsx";
 import { useSelector, useDispatch } from "react-redux";
-import Loading from "../../more/Loader.jsx";
+import Loading from "../../../more/Loader.jsx";
 import AccountTreeIcon from "@material-ui/icons/AccountTree";
 import { Button } from "@material-ui/core";
-import { UPDATE_ORDER_RESET } from "../../constans/OrderConstans";
+import { UPDATE_ORDER_RESET } from "../../../constans/OrderConstans.js";
 import "./UpdateOrder.css";
 import { ToastContainer, toast } from 'react-toastify';
 

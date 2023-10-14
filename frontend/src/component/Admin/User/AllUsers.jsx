@@ -1,13 +1,13 @@
 import React, { Fragment, useEffect } from "react";
 import { DataGrid } from "@material-ui/data-grid";
-import "./newProduct.css";
+import "../Product/newProduct.css";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { Button } from "@material-ui/core";
-import MetaData from "../../more/Metadata.jsx";
-import SideBar from "./Sidebar.jsx";
-import { getAllUsers, clearErrors, deleteUser } from "../../actions/userAction";
-import { DELETE_USER_RESET } from "../../constans/userContans";
+import MetaData from "../../../more/Metadata";
+import SideBar from "../Sidebar/Sidebar";
+import { getAllUsers, clearErrors, deleteUser } from "../../../actions/userAction";
+import { DELETE_USER_RESET } from "../../../constans/userContans";
 import { ToastContainer, toast } from 'react-toastify';
 
 const AllUsers = ({ history }) => {

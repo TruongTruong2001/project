@@ -71,16 +71,14 @@ const Products = ({ match }) => {
               {/* <BiMenuAltLeft size={30} className="absolute top-3 left-2" /> */}
               <button  onClick={() => setDropDown(!dropDown)}
                 className={`h-[100%] w-[230px]  flex justify-center items-center pl-2 bg-[#4ac68cc4] font-sans 
-                text-white text-lg  text-30 font-[400] select-none rounded-t-md`}
+                text-white  font-[400] select-none rounded-t-md`}
               >
-                <ListIcon   onClick={() => setDropDown(!dropDown)}  size={25}/>
-               <h5> Sản phẩm</h5>
+                <ListIcon   onClick={() => setDropDown(!dropDown)} 
+                style={{height:"1.5em"}}
+                />
+               <h5 className="px-[20px] text-[20px]"> Sản phẩm</h5>
               </button>
-              {/* <ArrowDropDownIcon
-                size={20}
-                className="absolute right-6 top-4 cursor-pointer"
-                onClick={() => setDropDown(!dropDown)}
-              /> */}
+             
               {dropDown ? (
                 <DropDown
                   categoriesData={categoriesData}
@@ -103,6 +101,7 @@ const Products = ({ match }) => {
                       </h1>
                     ) : null}
            </div>
+                      
 
 
         
@@ -131,9 +130,14 @@ const Products = ({ match }) => {
                   activeLinkClass="pageLinkActive"
                 /> */}
               </div>
+
+              
           </div>
+          
           <Footer />
           <BottomTab />
+
+          
         
         </>
       )}

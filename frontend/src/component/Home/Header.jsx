@@ -4,9 +4,11 @@ import "./Header.css";
 import { Link } from "react-router-dom";
 import { useSelector ,useDispatch} from "react-redux";
 import SearchIcon from '@mui/icons-material/Search';
-import Navbar from "./Navbar.jsx";
+import Navbar from "./Navbar";
 const Header = ({activeHeading}) => {
     const { cartItems } = useSelector((state) => state.cart);
+    const searchResultsRef = useRef(null);
+
     const { favouriteItems } = useSelector((state) => state.favourite);
     const [searchData, setSearchData] = useState(null);
     const [searchTerm, setSearchTerm] = useState("");
@@ -39,10 +41,20 @@ const Header = ({activeHeading}) => {
      setSearchData(filteredProducts);
   };
 
-  const handleBlur = () => {
-    // Ẩn kết quả tìm kiếm khi người dùng click chuột ra khỏi thanh tìm kiếm
-    setSearchData("");
-};
+    useEffect(() => {
+      const handleBodyClick = (e) => {
+        if (searchResultsRef.current && !searchResultsRef.current.contains(e.target)) {
+          setSearchData(null);
+        }
+      };
+
+      document.body.addEventListener("click", handleBodyClick);
+
+      return () => {
+        document.body.removeEventListener("click", handleBodyClick);
+      };
+    }, []);
+
 
   return (
   <>
@@ -60,36 +72,51 @@ const Header = ({activeHeading}) => {
             style={{  
               padding:"0px 50px"
             }}
+            
             >
       
-        <div className="w-[40vmax] relative">
+        <div className="w-[40vmax] relative" >
             <input
               type="search"
               placeholder="Tìm kiếm sản phẩm"
               value={searchTerm}
               onChange={handleSearchChange}
-              className="h-[43px] w-full px-2 border-[#3957db] border-[2px] rounded-md"
-             onBlur={handleBlur}
+              className="h-[43px]  w-full px-2 border-[white] border-[2px] rounded-md"
+           
             />
             <SearchIcon
               size={20}
               className="absolute right-2 top-2.5 cursor-pointer"
             />
                {searchData && searchData.length !== 0 ? (
-              <div className=" absolute min-h-[30vh] bg-slate-50 shadow-sm-2 z-[9] p-4"
+              <div className="border-b-gray-40 absolute max-h-[55vh] border-blue-300 mt-[5px] flow-none overflow-hidden bg-white shadow-sm-2 z-[9] p-4
               
+              " 
+              ref={searchResultsRef} 
               >
                 {searchData &&
                   searchData.map((i, index) => {
                     return (
                       <Link to={`/product/${i._id}`} className="hover:no-underline">
-                        <div className="w-full  flex items-start-py-3 ">
+                        <div className="w-[75vh] flex items-start-py-"
+                        style={{borderBottom:"1px solid #e5f7db",
+                                overflow:"hidden"
+                      }}
+                        >
+                         
+                            <div className="w-[90%] py-[12px] px-0  "
+                          
+                            >
+                              <a className=" text-[17px] text-[#252A2B]  mr-10">{i.name}</a>
+                              <span className="block text-[14px]-500  " >{`${ new Intl.NumberFormat('de-DE',
+                              {style:   'currency',currency:  'VND'}).format(i.price)}`}</span>
+
+                            </div>
                           <img
                             src={`${i.images[0].url}`}
                             alt=""
-                            className="w-[30px] h-[30px] mr-[15px]"
+                            className="w-[2.5em] h-[auto] mr-[15px]"
                           />
-                          <h1 className=" text-xl">{i.name}</h1>
                         </div>
                       </Link>
                     );

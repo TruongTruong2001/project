@@ -43,7 +43,7 @@ function TabPanel(props) {
 
   return (
    <>
-      = <div
+     <div
       role="tabpanel"
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
@@ -184,7 +184,7 @@ const ProductDetails = ({ match, history,props }) => {
             {/* Đánh giá */}
             <div className="varse__2">
               <div className="detailsBlock-1">
-                 <h2 >  {product.name}</h2>
+                 <h2 >{product.name}</h2>
             
               </div>
               <div className="detailsBlock-2">
@@ -197,7 +197,6 @@ const ProductDetails = ({ match, history,props }) => {
                   style={{
                     display: "flex",
                     color:"red"
-                    
                   }}
                 >
                   <h1> {`${
@@ -316,7 +315,7 @@ const ProductDetails = ({ match, history,props }) => {
                 
 
 
-            <Box  className="comment"  sx={{margin:"0px 50px  ", width: '100%' }}>
+            <Box  className="comment"  sx={{margin:"0px 30px  ", width: '100%' }}>
               <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                 <Tabs value={value} onChange={handleChange1} aria-label="basic tabs example">
                   <Tab label="Chi tiết" {...a11yProps(0)} />
@@ -341,8 +340,7 @@ const ProductDetails = ({ match, history,props }) => {
                     fontFamily: "Poppins, sans-serif"
                   }}
                 >
-                  {/* <span className="explain">Mô tả:</span> */}
-                    
+                 
                  <p dangerouslySetInnerHTML={{__html: product.description}} ></p>
                 </div>
               </TabPanel>

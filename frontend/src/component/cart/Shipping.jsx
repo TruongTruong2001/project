@@ -1,15 +1,11 @@
 import React, { useState } from "react";
 import "./Shipping.css";
+import Header from "../Home/Header";
 import { useSelector, useDispatch } from "react-redux";
 import CheckoutSteps from "./CheckoutSteps";
 import MetaData from "../../more/Metadata";
-import HomeIcon from "@material-ui/icons/Home";
-import PublicIcon from "@material-ui/icons/Public";
-import PhoneIcon from "@material-ui/icons/Phone";
-import TransferWithinAStationIcon from "@material-ui/icons/TransferWithinAStation";
 import { saveShippingInfo } from "../../actions/CartAction";
 import BottomTab from "../../more/BottomTab";
-
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -43,10 +39,9 @@ const Shipping = ({ history }) => {
   return (
     <>
       <MetaData title="Shipping Details" />
+      <Header/>
 
       <CheckoutSteps activeStep={0} />
-
-
       <div className="shippingContainer">
         <div className="shippingBox">
           <h2 className="shippingHeading">Thông tin giao hàng</h2>

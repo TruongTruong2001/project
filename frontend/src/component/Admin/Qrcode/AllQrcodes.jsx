@@ -1,18 +1,18 @@
 import React, { Fragment, useEffect } from "react";
 import { DataGrid } from "@material-ui/data-grid";
-import "./AllProducts.css";
+import "../Product/AllProducts.css";
 import { useSelector, useDispatch } from "react-redux";
 import {
   clearErrors,
   deleteQrcode,
   getAdminQrcodes,
-} from "../../actions/QrcodeAction";
+} from "../../../actions/QrcodeAction";
 import { Link } from "react-router-dom";
 import { Button } from "@material-ui/core";
-import MetaData from "../../more/Metadata.jsx";
-import SideBar from "./Sidebar.jsx";
+import MetaData from "../../../more/Metadata";
+import SideBar from "../Sidebar/Sidebar";
 import { ToastContainer, toast } from 'react-toastify';
-import { DELETE_QRCODE_RESET } from "../../constans/QrcodeConstans";
+import { DELETE_QRCODE_RESET } from "../../../constans/QrcodeConstans";
 // import { getAdminQrcodes } from "../../actions/QrcodeAction";
 import Box from '@mui/material/Box';
 

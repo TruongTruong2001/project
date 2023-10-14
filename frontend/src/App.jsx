@@ -33,28 +33,28 @@ import CommingSoon from "./more/CommingSoon";
 import Rules from "./more/Rules";
 import Contact from "./more/Contact";
 import MoreOption from "./component/user/MoreOption"
-import Dashboard from './component/Admin/Dashboard';
-import CreateProduct from './component/Admin/CreateProduct';
+import Dashboard from './component/Admin/Dashboard/Dashboard';
+import CreateProduct from './component/Admin/Product/CreateProduct';
 import CreateBlog from './component/Admin/Blog/CreateBlog';
 import BlogDetails from "./component/Blogs/BlogDetails";
 import './App.css';
-import AllProducts from "./component/Admin/AllProducts";
+import AllProducts from "./component/Admin/Product/AllProducts";
 import AllBlogs from "./component/Admin/Blog/AllBlogs";
-import AllQuidation from "./component/Admin/AllQuidation"
-import AllQrcodes from "./component/Admin/AllQrcodes";
-import EditProduct from "./component/Admin/EditProduct";
+import AllQuidation from "./component/Admin/Quidation/AllQuidation"
+import AllQrcodes from "./component/Admin/Qrcode/AllQrcodes";
+import EditProduct from "./component/Admin/Product/EditProduct";
 import EditBlog from "./component/Admin/Blog/EditBlog";
-import AllOrder from "./component/Admin/AllOrder";
-import UpdateOrder from "./component/Admin/UpdateOrder";
-import AllUsers from "./component/Admin/AllUsers";
-import UpdateUser from "./component/Admin/UpdateUser";
-import AllReviews from "./component/Admin/AllReviews";
+import AllOrder from "./component/Admin/Order/AllOrder";
+import UpdateOrder from "./component/Admin/Order/UpdateOrder";
+import AllUsers from "./component/Admin/User/AllUsers";
+import UpdateUser from "./component/Admin/User/UpdateUser";
+import AllReviews from "./component/Admin/Review/AllReviews";
 import ForgotPassword from "./component/user/ForgotPassword";
 import ResetPassword from "./component/user/ResetPassword";
 import Notfound from "./more/Notfound";
 import PlaceOrder from './component/cart/PlaceOrder';
-import Qrcode from "./component/Admin/Qrcode";
-import EditQrcode from "./component/Admin/EditQrcode";
+import Qrcode from "./component/Admin/Qrcode/Qrcode";
+import EditQrcode from "./component/Admin/Qrcode/EditQrcode";
 import Vnpay from './component/cart/Vnpay';
 function App() {
   

@@ -1,24 +1,23 @@
 import React, { useEffect } from "react";
-import Sidebar from "./Sidebar";
+import Sidebar from "../Sidebar/Sidebar";
 import "./dashboard.css";
 import { Typography } from "@material-ui/core";
 import {Link} from "react-router-dom";
 import { Doughnut, Line } from "react-chartjs-2";
     // eslint-disable-next-line
-
+import Chart from 'chart.js/auto';
 import { useSelector, useDispatch } from "react-redux";
-import MetaData from "../../more/Metadata";
-import Loading from "../../more/Loader";
-import { getAdminProduct } from "../../actions/ProductActions";
-import { getAllOrders } from "../../actions/OrderAction";
-import { getAllUsers } from "../../actions/userAction";
-import { getAdminBlog } from "../../actions/BlogActions";
+import MetaData from "../../../more/Metadata";
+import Loading from "../../../more/Loader";
+import { getAdminProduct } from "../../../actions/ProductActions";
+import { getAdminBlog } from "../../../actions/BlogActions";
+import { getAllOrders } from "../../../actions/OrderAction";
+import { getAllUsers } from "../../../actions/userAction";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
   const { products,loading } = useSelector((state) => state.products);
-  const { blogs } = useSelector((state) => state.blogs);
- 
+  const { blogs } = useSelector((state) => state.blogs); 
   const { orders } = useSelector((state) => state.AllOrders);
   const { users } = useSelector((state) => state.allUsers);
    let outOfStock = 0;
@@ -102,8 +101,8 @@ const Dashboard = () => {
                 <p>Người dùng</p>
                 <p>{users && users.length}</p>
               </Link>
-              <Link to="/admin/blogs">
-                <p>Bài Blog</p>
+              <Link to="/admin/blog">
+                <p>Người dùng</p>
                 <p>{blogs && blogs.length}</p>
               </Link>
             </div>

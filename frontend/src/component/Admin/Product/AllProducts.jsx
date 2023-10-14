@@ -7,14 +7,14 @@ import {
   clearErrors,
   deleteProduct,
   getAdminProduct,
-} from "../../actions/ProductActions";
+} from "../../../actions/ProductActions";
 import { Link } from "react-router-dom";
 import { Button } from "@material-ui/core";
-import MetaData from "../../more/Metadata.jsx";
-import SideBar from "./Sidebar.jsx";
+import MetaData from "../../../more/Metadata";
+import SideBar from "../Sidebar/Sidebar";
 import Box from '@mui/material/Box';
 import { ToastContainer, toast } from 'react-toastify';
-import { DELETE_PRODUCT_RESET } from "../../constans/ProductConstans";
+import { DELETE_PRODUCT_RESET } from "../../../constans/ProductConstans";
 
 const AllProducts = ({history}) => {
     const dispatch = useDispatch();

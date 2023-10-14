@@ -12,13 +12,14 @@ const BlogCard = ({ blog }) => {
   
   return (
     <>
+    
       <Link to= {`/blog/${blog._id}`}
             className="relative flex w-[35vh] h-[20vmax] flex-col hover:no-underline
                         m-[1.5vmax] transition-all duration-300 ease">
             <img src={blog.images[0].url}
                className="  h-[150px]"
             />
-            <p className="productName">{blog.title}</p>
+            <p className="text-lg">{blog.title}</p>
             
           </Link>
     </>

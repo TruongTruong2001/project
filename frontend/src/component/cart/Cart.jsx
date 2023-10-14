@@ -105,7 +105,7 @@ const Cart = ({ history }) => {
               <div></div>
               <div className="checkOutBtn">
                 {/* <button >Thanh toán</button> */}
-                <div onClick={checkoutHandler} class="btn from-left">Thanh toán</div>
+                <div onClick={checkoutHandler} class="btn from-left">Đặt hàng</div>
               
               </div>
 

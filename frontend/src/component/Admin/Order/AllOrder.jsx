@@ -1,19 +1,17 @@
 import React, { Fragment, useEffect } from "react";
 import { DataGrid } from "@material-ui/data-grid";
-import "./newProduct.css";
+import "../Product/newProduct.css";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { Button } from "@material-ui/core";
-import MetaData from "../../more/Metadata.jsx";
-import EditIcon from "@material-ui/icons/Edit";
-import DeleteIcon from "@material-ui/icons/Delete";
-import SideBar from "./Sidebar.jsx";
+import MetaData from "../../../more/Metadata";
+import SideBar from "../Sidebar/Sidebar";
 import {
   getAllOrders,
   clearErrors,
   deleteOrder,
-} from "../../actions/OrderAction";
-import { DELETE_ORDER_RESET } from "../../constans/OrderConstans";
+} from "../../../actions/OrderAction";
+import { DELETE_ORDER_RESET } from "../../../constans/OrderConstans";
 import { ToastContainer, toast } from 'react-toastify';
 
 

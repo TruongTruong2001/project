@@ -1,17 +1,17 @@
 import React, { Fragment, useEffect, useState } from "react";
 import "./newProduct.css";
 import { useSelector, useDispatch } from "react-redux";
-import { clearErrors, updateProduct, getProductDetails } from "../../actions/ProductActions";
+import { clearErrors, updateProduct, getProductDetails } from "../../../actions/ProductActions";
 import { Button } from "@material-ui/core";
-import MetaData from "../../more/Metadata.jsx";
+import MetaData from "../../../more/Metadata";
 import AccountTreeIcon from "@material-ui/icons/AccountTree";
 import SpellcheckIcon from "@material-ui/icons/Spellcheck";
 import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
     // eslint-disable-next-line
 import DiscountIcon from "@material-ui/icons/LocalOffer";
 
-import SideBar from "./Sidebar.jsx";
-import { UPDATE_PRODUCT_RESET } from "../../constans/ProductConstans";
+import Sidebar from "../Sidebar/Sidebar";
+import { UPDATE_PRODUCT_RESET } from "../../../constans/ProductConstans";
 import WarehouseIcon from '@mui/icons-material/Warehouse';
 import "react-quill/dist/quill.snow.css";
 import { ToastContainer, toast } from 'react-toastify';
@@ -48,7 +48,8 @@ const modules = {
   imageResize: {
     parchment: Quill.import('parchment'),
     modules: ['Resize', 'DisplaySize', 'Toolbar']
-  }
+  },
+  
 };
 
 const formats = [
@@ -75,9 +76,6 @@ const UpdateProduct = ({ history, match }) => {
   const dispatch = useDispatch();
   const [content, setContent] = useState("");
 
-  const handleEditorChange = (content, editor) => {
-    setContent(content);
-  };
   const { error, product } = useSelector((state) => state.productDetails);
 
   const {
@@ -104,11 +102,11 @@ const UpdateProduct = ({ history, match }) => {
   const [qrcode, setQRcode] = useState([]);
 
   const categories = [
-    "Thịt",
-    "Rau",
-    "Gia vị",
-    "Trái cây",
-    "Thực phẩm chế biến"
+
+    "Thực phẩm chế biến",
+    "Nông sản",
+    "Thủ công mỹ nghệ",
+    "Quà lưu niệm"
   ];
   
   const productId = match.params.id;
@@ -161,7 +159,6 @@ const UpdateProduct = ({ history, match }) => {
     // console.log(JSON.stringify(editor.getContents())); // delta 사용시
     setDescription(editor.getHTML());
   };
-
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     const reader = new FileReader();
@@ -192,11 +189,7 @@ const UpdateProduct = ({ history, match }) => {
    
     dispatch(updateProduct(productId, myForm));
   };
-//     const handleChange = (e, editor) =>{
-//         const data= editor.getData();
-//         setDescription(data)
 
-// }
   const updateProductImagesChange = (e) => {
   const files = Array.from(e.target.files);
 
@@ -224,7 +217,7 @@ const UpdateProduct = ({ history, match }) => {
     <Fragment>
       <MetaData title="Edit Product" />
       <div className="dashboard">
-        <SideBar />
+        <Sidebar />
         <div className="newProductContainer">
           <form
             className="createProductForm"

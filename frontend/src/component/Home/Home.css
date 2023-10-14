@@ -27,11 +27,12 @@ button.Home__button {
 
 .container {
   display: flex;
-  margin: 2vmax auto;
+  margin:0px auto;
   width: 80vw;
   flex-wrap: wrap;
   justify-content: center;
   max-width: 100%;
+  
 }
 h1.discountPrice {
   font-size: 1vmax;
@@ -45,8 +46,10 @@ h1.discountPrice {
 }
 
 .ProductCard {
-  width: 15vmax;
-  height: 25vmax;
+  width: 17vmax!important;
+  height: 150px;
+  object-fit: cover;
+ 
   display: flex;
   flex-direction: column;
   text-decoration: none;
@@ -54,12 +57,13 @@ h1.discountPrice {
   margin: 2vmax;
   transition: all 0.5s;
   padding-bottom: 0.5vmax;
+
 }
 
 .ProductCard > div {
   margin: 0.5vmax;
-  display: flex;
-  justify-content: flex-start;
+  display: block;
+  
 }
 .ProductCard > div > span {
   margin: 0.5vmax;
@@ -173,21 +177,21 @@ button.Home__button {
   max-width: 100%;
 }
 .ProductCard {
-  width: 15vmax;
+  width: 16vmax!important;
   height: fit-content;
-  display: flex;
+
   flex-direction: column;
   text-decoration: none;
   color: rgb(48, 48, 48);
-  margin: 2vmax;
+  margin:0px 2vmax;
   transition: all 0.5s;
   padding-bottom: 0.5vmax;
 }
 
 .ProductCard > div {
   margin: 0.5vmax;
-  display: flex;
-  justify-content: flex-start;
+  /* display: flex;
+  justify-content: flex-start; */
 }
 .ProductCard > div > span {
   margin: 0.5vmax;
@@ -195,7 +199,7 @@ button.Home__button {
 }
 .productName {
   font-family: "Roboto";
-  font-size: 1.2vmax;
+  font-size: 26px;
   margin: 1vmax 0.5vmax;
   color: #000;
   margin-bottom: 0;
@@ -332,16 +336,17 @@ button.Home__button {
 
 .button-48 span {
   z-index: 1;
-
   position: relative;
 }
+
 #icon-mall {
   fill: currentColor;
   width: 1em;
-  height: 1em;
+  height: 0.9em;
   display: inline-block;
   font-size: 1.4rem;
   transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   flex-shrink: 0;
   user-select: none;
+  margin: 0px 6px;
 }

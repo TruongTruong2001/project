@@ -1,9 +1,9 @@
 import React, { Fragment, useEffect, useState } from "react";
 import "./QRcode.css";
 import { useSelector, useDispatch } from "react-redux";
-import { clearErrors, updateQrcode, getQrcodeDetails } from "../../actions/QrcodeAction";
+import { clearErrors, updateQrcode, getQrcodeDetails } from "../../../actions/QrcodeAction";
 import { Button } from "@material-ui/core";
-import MetaData from "../../more/Metadata.jsx";
+import MetaData from "../../../more/Metadata";
 import AccountTreeIcon from "@material-ui/icons/AccountTree";
 import DescriptionIcon from "@material-ui/icons/Description";
 import StorageIcon from "@material-ui/icons/Storage";
@@ -11,8 +11,8 @@ import SpellcheckIcon from "@material-ui/icons/Spellcheck";
 import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
     // eslint-disable-next-line
 import qs from 'qs';
-import SideBar from "./Sidebar.jsx";
-import { UPDATE_QRCODE_RESET } from "../../constans/QrcodeConstans";
+import SideBar from "../Sidebar/Sidebar";
+import { UPDATE_QRCODE_RESET } from "../../../constans/QrcodeConstans";
 import { ToastContainer, toast } from 'react-toastify';
 import ImageIcon from '@mui/icons-material/Image';
 import {QRCodeSVG} from 'qrcode.react';

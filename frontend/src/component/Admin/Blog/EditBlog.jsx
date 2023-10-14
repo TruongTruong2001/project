@@ -4,7 +4,7 @@ import { clearErrors, updateBlog, getBlogDetails } from "../../../actions/BlogAc
 import { Button } from "@material-ui/core";
 import MetaData from "../../../more/Metadata.jsx";
 import SpellcheckIcon from "@material-ui/icons/Spellcheck";
-import SideBar from "../Sidebar.jsx";
+import Sidebar from "../Sidebar/Sidebar";
 import { UPDATE_BLOG_RESET } from "../../../constans/BlogConstans";
 import "react-quill/dist/quill.snow.css";
 import { ToastContainer, toast } from 'react-toastify';
@@ -164,7 +164,7 @@ const UpdateBlog = ({ history, match }) => {
     <Fragment>
       <MetaData title="Chỉnh sửa blog" />
       <div className="dashboard">
-        <SideBar />
+        <Sidebar />
         <div className="newProductContainer">
           <form
             className="createProductForm"

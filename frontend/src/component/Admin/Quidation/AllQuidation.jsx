@@ -6,15 +6,15 @@ import {
   clearErrors,
   deleteProduct,
   getAdminProduct,
-} from "../../actions/ProductActions";
+} from "../../../actions/ProductActions";
 import { Link } from "react-router-dom";
 import { Button } from "@material-ui/core";
-import MetaData from "../../more/Metadata.jsx";
+import MetaData from "../../../more/Metadata.jsx";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
-import SideBar from "./Sidebar.jsx";
+import SideBar from "../Sidebar/Sidebar.jsx";
 import { ToastContainer, toast } from 'react-toastify';
-import { DELETE_PRODUCT_RESET } from "../../constans/ProductConstans";
+import { DELETE_PRODUCT_RESET } from "../../../constans/ProductConstans";
 import { useState } from 'react';
 
 const AllQuidation = ({history}) => {

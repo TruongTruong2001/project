@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
-import Footer from "../../Footer.jsx";
-import Header from "../Home/Header.jsx";
+import Footer from "../../Footer";
+import Header from "../Home/Header";
 import { useSelector, useDispatch } from "react-redux";
-import Loading from "../../more/Loader.jsx";
-import BlogCard from "./BlogCard.jsx";
+import Loading from "../../more/Loader";
+import BlogCard from "./BlogCard";
 import { clearErrors, getBlog } from "../../actions/BlogActions";
 import Pagination from "react-js-pagination";
-import MetaData from "../../more/Metadata.jsx";
+import MetaData from "../../more/Metadata";
 import Typography from"@material-ui/core/Typography"
 // import { useAlert } from "react-alert";
-import BottomTab from "../../more/BottomTab.jsx";
+import BottomTab from "../../more/BottomTab";
 
 const Blogs = ({ match }) => {
   const dispatch = useDispatch();

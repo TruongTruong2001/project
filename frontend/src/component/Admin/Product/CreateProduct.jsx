@@ -1,17 +1,16 @@
 import React, { Fragment, useEffect, useState } from "react";
-import "./newProduct.css";
+import "../Product/newProduct.css";
 import { useSelector, useDispatch } from "react-redux";
-import { clearErrors, createProduct } from "../../actions/ProductActions";
+import { clearErrors, createProduct } from "../../../actions/ProductActions";
 import { Button } from "@material-ui/core";
-import MetaData from "../../more/Metadata.jsx";
+import MetaData from "../../../more/Metadata";
 import AccountTreeIcon from "@material-ui/icons/AccountTree";
-import DescriptionIcon from "@material-ui/icons/Description";
 import StorageIcon from "@material-ui/icons/Storage";
 import SpellcheckIcon from "@material-ui/icons/Spellcheck";
 import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
 import DiscountIcon from "@material-ui/icons/LocalOffer";
-import SideBar from "./Sidebar.jsx";
-import { NEW_PRODUCT_RESET } from "../../constans/ProductConstans";
+import Sidebar from "../Sidebar/Sidebar";
+import { NEW_PRODUCT_RESET } from "../../../constans/ProductConstans";
 import { ToastContainer, toast } from 'react-toastify';
 import Grid3x3Icon from '@mui/icons-material/Grid3x3';
 import TimelapseIcon from '@mui/icons-material/Timelapse';
@@ -166,7 +165,7 @@ const CreateProduct = ({ history }) => {
     <Fragment>
       <MetaData title="Create Product" />
       <div className="dashboard">
-        <SideBar />
+        <Sidebar />
         <div className="newProductContainer">
           <form
             className="createProductForm"

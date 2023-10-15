@@ -261,7 +261,7 @@ const UpdateProduct = ({ history, match }) => {
                   />
                 </div>
 
-                <div style={{marginLeft:"30px"}}>
+                <div >
                   <TimelapseIcon />
                   <input
                     type="text"

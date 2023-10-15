@@ -15,14 +15,10 @@ const ProductCard = ({ product }) => {
       <div>
       <div className="ProductCard ">
         
-        <div className="h-[14rem]">
-          <img
-            src={product.images[0].url}
-            alt=""
-           
-          />
+        <div className="h-[16rem]">
+          <img style={{margin:"0px 15px", width:"170px", height:"auto"}} src={product.images[0].url}  alt=""  />
+
           <span  style={{
-           
             fontSize:"16px"}} >{product.name}</span>
 
         </div>

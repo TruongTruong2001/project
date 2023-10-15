@@ -10,15 +10,13 @@ const DropDown = ({ categoriesData, setDropDown }) => {
     window.location.reload();
   };
   return (
-  <>
+  <>  
     <div className="px-[1rem] py-[1rem] w-[230px] bg-[#fff] absolute z-30 rounded-b-md shadow-sm">
       {categoriesData &&
         categoriesData.map((i, index) => (
           <div 
             key={index}
             className={`w-[29vh] mb-[10px] flex`}
-           
-        
             onClick={() => submitHandle(i)}
           >
             <img
@@ -26,9 +24,7 @@ const DropDown = ({ categoriesData, setDropDown }) => {
               style={{
                 width: "25px",
                 height: "35px",
-              
                 userSelect: "none",
-               
               }}
               alt=""
             />

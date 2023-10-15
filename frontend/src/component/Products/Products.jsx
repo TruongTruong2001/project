@@ -66,14 +66,14 @@ const Products = ({ match }) => {
         <MetaData title="Products" />
           <Header className="relative" activeHeading={2}/>
           <div className=" absolute h-[50px]  ml-[30px] w-[230px]  1000px:block"
-          style={{top:"7rem"}}
+          style={{top:"6rem"}}
           >
-              {/* <BiMenuAltLeft size={30} className="absolute top-3 left-2" /> */}
+            
               <button  onClick={() => setDropDown(!dropDown)}
                 className={`h-[100%] w-[230px]  flex justify-center items-center pl-2 bg-[#4ac68cc4] font-sans 
                 text-white  font-[400] select-none rounded-t-md`}
               >
-                <ListIcon   onClick={() => setDropDown(!dropDown)} 
+                <ListIcon onClick={() => setDropDown(!dropDown)} 
                 style={{height:"1.5em"}}
                 />
                <h5 className="px-[20px] text-[20px]"> Sản phẩm</h5>

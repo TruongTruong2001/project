@@ -28,10 +28,15 @@ const Home = () => {
     <>
       <>
       <MetaData title="Trang chủ" />
+   
       <Header activeHeading={1} />
+    
+     
+     
         {/* Carousel */}
       <div className="flex justify-center "
       >
+        
         <div className="banner">
                 <Carousel>
                   <img src="https://theme.hstatic.net/200000348893/1000847181/14/collection_banner.jpg?
@@ -48,7 +53,8 @@ const Home = () => {
       <h2 className="homeHeading ">Thực phẩm chế biến </h2>
         {products &&
             products
-            .filter((product) => product.category === 'Thực phẩm chế biến' && product.status=="Chưa thanh lý")
+            .filter((product) => 
+                    product.subcategory==="Thực phẩm chế biến")
             .map((product) =>(
               <ProductCard key={product._id} product={product} />
             ))}
@@ -58,9 +64,9 @@ const Home = () => {
       <div className="container" id="container">
       <h2 className="homeHeading">Nông sản</h2>
         {products &&
-        
         products
-        .filter((product) => product.category === 'Nông sản' && product.status==="Chưa thanh lý")
+        .filter((product) =>  product.subcategory==="Nông sản" )
+        
         .map((product) =>(
           <ProductCard key={product._id} product={product} />
         ))}

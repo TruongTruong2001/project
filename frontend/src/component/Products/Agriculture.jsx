@@ -16,7 +16,7 @@ import DropDown from "./DropDown";
 import { categoriesData } from "../Admin/Product/sidebarData";
 import Sidebar from "../Admin/Product/Sidebar";
 import ListIcon from '@mui/icons-material/List';
-const Products = ({ match }) => {
+const Agriculture = ({ match }) => {
   const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
   const [category,setCategory] = useState("");
@@ -27,14 +27,6 @@ const Products = ({ match }) => {
     setCurrentPage(e);
   };
   
-  const history = useHistory();
-  const queryParams = new URLSearchParams(history.location.search.split('?')[1]);
-  const queryParams1 = new URLSearchParams(history.location.search.split('?')[1]);
-  const queryParams2 = new URLSearchParams(history.location.search.split('?')[1]);
-  const subcategory = queryParams.get('category');
-  const childcategory = queryParams1.get('childcategory');
-  const smallcategory = queryParams2.get('child');
-
   const [product, setProduct] = useState([]);
   const {products,loading, error} = useSelector((state) => state.products);
   
@@ -45,33 +37,13 @@ const Products = ({ match }) => {
     }
   dispatch(getProduct(keyword,category,childrens));
 }, [dispatch, keyword,category,alert,error,childrens]); 
+      const [filteredProducts, setFilteredProducts] = useState([]);
+      useEffect(() => {
+     
+         products.filter((product) => product.subcategory === "Nông sản");
 
-    useEffect(() => {
-      let filteredProducts = products;
-        if ( subcategory !== null ) {
-          filteredProducts = filteredProducts.filter(
-            (product) => product.subcategory === subcategory
-          );
-        }
-
-      else  if (childcategory !==null ) {
-          filteredProducts = filteredProducts.filter(
-            (product) => 
-              product.childcategory === childcategory
-          
-          );
-        }
-        else  if (  smallcategory !==null ) {
-          filteredProducts = filteredProducts.filter(
-            (product) => product.smallcategory === smallcategory
-            
-          );
-        }  
-       
-
-        setProduct(filteredProducts);
-      
-    }, [products, subcategory, childcategory, smallcategory]);
+        setFilteredProducts(filteredProducts);
+      }, [products]);
   
   return (
     <>
@@ -80,7 +52,7 @@ const Products = ({ match }) => {
       ) : (
         <>
         <MetaData title="Products" />
-          <Header className="relative" activeHeading={2}/>
+          <Header className="relative" activeHeading={3}/>
           <div className="z-30 absolute ml-[1em] mt-[-6rem] z-5" 
           >
                <Sidebar 
@@ -97,22 +69,24 @@ const Products = ({ match }) => {
                                 md:gap-[20px] lg:grid-cols-4 lg:gap-[20px] 
                                   mb-1 " >
                                 
-                      {product && product.map((i, index) => <ProductCard  product={i} key={index} />)}
-                    </div>
-                    {product && product.length === 0 ? (
-                          <div className="container" id="container">
-                 
-                    {products &&
-                    
-                    products
-                    .filter((product) => product.subcategory === "Thực phẩm chế biến"
-                  )
-                    .map((product) =>(
-                      <ProductCard key={product._id} product={product} />
-                    ))}
-                  </div>
-                  
-                    ) : null}
+                                {filteredProducts.map((product, index) => (
+                                    <ProductCard product={product} key={index} />
+                                  ))}
+                             </div>
+                                  {filteredProducts && filteredProducts.length === 0 ? (
+                                  <div className="container" id="container">
+                                    
+                                        {products &&
+                                        
+                                        products
+                                        .filter((product) => product.subcategory === "Thực phẩm chế biến"
+                                     )
+                                        .map((product) =>(
+                                          <ProductCard key={product._id} product={product} />
+                                        ))}
+                                </div>
+                                
+                                  ) : null}
            </div>
                     
               <div
@@ -154,4 +128,4 @@ const Products = ({ match }) => {
   );
 };
 
-export default Products;
+export default Agriculture;

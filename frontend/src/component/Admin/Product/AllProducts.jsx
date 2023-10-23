@@ -12,7 +12,6 @@ import { Link } from "react-router-dom";
 import { Button } from "@material-ui/core";
 import MetaData from "../../../more/Metadata";
 import SideBar from "../Sidebar/Sidebar";
-import Box from '@mui/material/Box';
 import { ToastContainer, toast } from 'react-toastify';
 import { DELETE_PRODUCT_RESET } from "../../../constans/ProductConstans";
 
@@ -60,7 +59,7 @@ const AllProducts = ({history}) => {
         price: item.price,
         name: item.name,
         images: item.images,
-        category:item.category
+        category:item.subcategory
       });
     });
 
@@ -125,7 +124,7 @@ const columns = [
     {
       field: "category",
       headerName: "Loại",
-      type: "string",
+      type: "array",
       width: 5,
       editable: true,
       flex: 0.2,

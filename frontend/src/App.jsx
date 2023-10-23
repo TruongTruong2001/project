@@ -56,6 +56,7 @@ import PlaceOrder from './component/cart/PlaceOrder';
 import Qrcode from "./component/Admin/Qrcode/Qrcode";
 import EditQrcode from "./component/Admin/Qrcode/EditQrcode";
 import Vnpay from './component/cart/Vnpay';
+import Agriculture from "./component/Products/Agriculture";
 function App() {
   
   const {isAuthenticated,user} = useSelector((state) =>state.user);
@@ -77,7 +78,9 @@ function App() {
         
      <Router>
 
-       {isAuthenticated && <UserData user={user} />}
+       {isAuthenticated && 
+       <div className="z-50">  <UserData  user={user} /></div>
+     }
        <Switch>
          <Route exact path="/" component={Home} />
          <Route exact path="/product/:id" component={ProductDetails} />
@@ -89,6 +92,7 @@ function App() {
          <Route exact path="/search" component={Search} />
          <Route exact path="/vnpay" component={Vnpay} />
          <Route exact path="/products/:keyword" component={Products} />
+         <Route exact path="/nongsans" component={Agriculture} />
          <Route exact path="/support" component={Support} />
          <Route exact path="/cart" component={Cart} />
          <Route exact path="/favourites" component={Favourites} />

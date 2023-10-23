@@ -12,7 +12,7 @@ exports.createProduct = catchAsyncErrors(async (req, res, next) => {
     images.push(req.body.images);
   } else {
     images = req.body.images;
-  }s
+  }
 
   const imagesLinks = [];
 

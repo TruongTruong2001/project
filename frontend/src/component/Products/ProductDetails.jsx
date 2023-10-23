@@ -295,26 +295,10 @@ const ProductDetails = ({ match, history,props }) => {
             </div>
             
           </div>
-{/* Mô tả */}
-         
-          {/* Reviews */}
-          {/* <div className="reviews__heading">
-            <h1
-              style={{
-                padding: "5px 30px",
-                opacity: 1,
-                borderBottom: "1px solid #999",
-                fontFamily: "Poppins,sans-serif",
-              }}
-            >
-              Đánh giá
-            </h1>
-          </div> */}
+
           <div>
             {/* Reviews */}
-                
-
-
+              
             <Box  className="comment"  sx={{margin:"0px 30px  ", width: '100%' }}>
               <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                 <Tabs value={value} onChange={handleChange1} aria-label="basic tabs example">
@@ -462,19 +446,16 @@ const ProductDetails = ({ match, history,props }) => {
 
           </div>
           <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="modal-modal-title"
+              aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
-          <img     style={{ margin:"100px 200px", height:"405px"}} src={product.qrcode} alt="" />
-        </Box>
-      </Modal>
+          <Box sx={style}>
+            <img style={{ margin:"100px 200px", height:"405px"}} src={product.qrcode} alt="" />
+          </Box>
+       </Modal>
 
-
-
-          
           <ToastContainer
             position="bottom-center"
             autoClose={5000}

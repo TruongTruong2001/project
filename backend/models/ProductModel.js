@@ -59,9 +59,17 @@ const productSchema = new mongoose.Schema({
         }
     ],
   
-    category:{
-        type: String,
-        required:[true,"Please add a category of your product"],
+   
+    subcategory:{
+        type:String,
+        required:[true, "Please add a description of your product"],
+    },
+    childcategory:{
+        type:String,
+        required:[true, "Please add a description of your product"],
+    },
+    smallcategory:{
+        type:String
     },
     Stock:{
         type: Number,

@@ -72,7 +72,7 @@ const BlogDetails = ({ match, history }) => {
       ) : (
         <>
           <MetaData title={`${blog.title}`} />
-          <Header />
+          <Header   />
          <div className="flex justify-center">
          <div
 

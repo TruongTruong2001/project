@@ -62,6 +62,7 @@ border-radius: 4px;
 font: 300 0.9vmax cursive;
 outline: none;
 margin: 10px auto;
+width: 20rem;
 }
 
 
@@ -173,4 +174,12 @@ color: rgba(0, 0, 0, 0.623);
     font: 300 1.9vmax "Roboto";
     padding: 1.8vmax;
   }
+}
+
+.ql-video {
+  max-width: 45rem; /* Giảm kích thước video nếu nó quá lớn */
+  width: 100%; /* Chiều rộng 100% của vùng chứa video */
+  height: 35rem; /* Chiều cao tự động điều chỉnh để giữ tỷ lệ khung hình */
+  margin: 0px 10rem;
+
 }

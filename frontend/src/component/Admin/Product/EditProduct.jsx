@@ -1,5 +1,5 @@
-import React, { Fragment, useEffect, useState } from "react";
-import "./newProduct.css";
+import React, { Fragment, useEffect, useState ,useRef } from "react";
+import "./newProduct.css"; 
 import { useSelector, useDispatch } from "react-redux";
 import { clearErrors, updateProduct, getProductDetails } from "../../../actions/ProductActions";
 import { Button } from "@material-ui/core";
@@ -7,9 +7,7 @@ import MetaData from "../../../more/Metadata";
 import AccountTreeIcon from "@material-ui/icons/AccountTree";
 import SpellcheckIcon from "@material-ui/icons/Spellcheck";
 import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
-    // eslint-disable-next-line
 import DiscountIcon from "@material-ui/icons/LocalOffer";
-
 import Sidebar from "../Sidebar/Sidebar";
 import { UPDATE_PRODUCT_RESET } from "../../../constans/ProductConstans";
 import WarehouseIcon from '@mui/icons-material/Warehouse';
@@ -18,11 +16,12 @@ import { ToastContainer, toast } from 'react-toastify';
 import TimelapseIcon from '@mui/icons-material/Timelapse';
 import Grid3x3Icon from '@mui/icons-material/Grid3x3';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
-
+import { categoriesData } from "./sidebarData";
 import ReactQuill,{ Quill } from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import ImageResize from 'quill-image-resize-module-react';
-import { Editor } from "@tinymce/tinymce-react";
+
+
 Quill.register('modules/imageResize', ImageResize);
 const modules = {
   toolbar: [
@@ -71,44 +70,37 @@ const formats = [
   "color",
   "background",
 ];
+
 const UpdateProduct = ({ history, match }) => {
 
   const dispatch = useDispatch();
-  const [content, setContent] = useState("");
-
   const { error, product } = useSelector((state) => state.productDetails);
 
+  const quillRef = useRef(null);
   const {
     loading,
     error: updateError,
     isUpdated,
   } = useSelector((state) => state.deleteProduct);
-
-  const [name, setName] = useState("");
-  
+  const [selectedCategory, setSelectedCategory] = useState('');
  
+  const [selectedChild, setSelectedChild] = useState('');
+  const [selectedGrandchild, setSelectedGrandchild] = useState('');
+  const [selectedSmall, setSelectedSmall] = useState('');
+  
+  const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
-      // eslint-disable-next-line
   const [offerPrice, setOfferPrice] = useState("");
   const [consignment, setConsignment] = useState("");
   const [status, setStatus] = useState("");
   const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("");
   const [expiration, setExpiration] = useState();
   const [Stock, setStock] = useState(0);
   const [images, setImages] = useState([]);
   const [oldImages, setOldImages] = useState([]);
   const [imagesPreview, setImagesPreview] = useState([]);
   const [qrcode, setQRcode] = useState([]);
-
-  const categories = [
-
-    "Thực phẩm chế biến",
-    "Nông sản",
-    "Thủ công mỹ nghệ",
-    "Quà lưu niệm"
-  ];
-  
+ 
   const productId = match.params.id;
 
   useEffect(() => {
@@ -120,12 +112,16 @@ const UpdateProduct = ({ history, match }) => {
       setDescription(product.description);
       setStatus(product.status);
       setPrice(product.price);
-      setCategory(product.category);
       setConsignment(product.consignment);
       setStock(product.Stock);
       setOldImages(product.images);
       setExpiration(product.expiration);
       setOfferPrice(product.offerPrice);
+      setSelectedCategory(product.setSelectedCategory);
+      setSelectedChild(product.subcategory);
+      setSelectedGrandchild(product.childcategory)
+      setSelectedSmall(product.smallcategory)
+     
     
     }
     if (error) {
@@ -159,6 +155,7 @@ const UpdateProduct = ({ history, match }) => {
     // console.log(JSON.stringify(editor.getContents())); // delta 사용시
     setDescription(editor.getHTML());
   };
+
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     const reader = new FileReader();
@@ -169,7 +166,7 @@ const UpdateProduct = ({ history, match }) => {
   };
   const updateProductSubmitHandler  = (e) => {
     e.preventDefault();
-
+   
     const myForm = new FormData();
 
     myForm.set("name", name);
@@ -178,19 +175,25 @@ const UpdateProduct = ({ history, match }) => {
     myForm.set("description", description);
     myForm.set("status", status);
     myForm.set("expiration", expiration);
-    myForm.set("category", category);
     myForm.set("qrcode", qrcode);
     myForm.set("Stock", Stock);
     myForm.set("consignment", consignment);
+    
+    myForm.set("category", selectedCategory)
+    myForm.set("subcategory", selectedChild);
+    myForm.set("childcategory", selectedGrandchild);
+    myForm.set("smallcategory", selectedSmall);
+  
+    
     images.forEach((image) => {
       myForm.append("images", image);
     });
-
-   
+  
     dispatch(updateProduct(productId, myForm));
   };
 
   const updateProductImagesChange = (e) => {
+
   const files = Array.from(e.target.files);
 
     setImages([]);
@@ -249,8 +252,8 @@ const UpdateProduct = ({ history, match }) => {
             </div>
 
 
-            <div>    
-                <div>
+            <div >    
+                <div >
                   <DiscountIcon />
                   <input
                     type="String"
@@ -261,7 +264,7 @@ const UpdateProduct = ({ history, match }) => {
                   />
                 </div>
 
-                <div >
+                <div style={{marginLeft:"55px"}} >
                   <TimelapseIcon />
                   <input
                     type="text"
@@ -285,7 +288,7 @@ const UpdateProduct = ({ history, match }) => {
               />
             </div>
 
-            <div style={{marginLeft:"30px"}}>
+            <div  style={{marginLeft:"55px"}}>
               <WarehouseIcon />
               <input
                 type="number"
@@ -310,21 +313,63 @@ const UpdateProduct = ({ history, match }) => {
                 </div>
           
            
-            <div>
+            <div >
               <AccountTreeIcon />
-              <select
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
-              >
-                <option value="">Chọn loại</option>
-                {categories.map((cate) => (
-                  <option key={cate} value={cate}>
-                    {cate}
-                  </option>
-                ))}
-              </select>
-            </div>
+            
+                    <select 
+                      value={selectedChild}
+                      onChange={(e) => {
+                        setSelectedChild(e.target.value);
+                        setSelectedGrandchild('');
+                      }}
+                    >
+                     
+                      {categoriesData
+                        .find((category) => category.title === "Sản phẩm")
+                        ?.childrens.map((child) => (
+                          <option key={child.id} value={child.title}>
+                            {child.title}
+                          </option>
+                        ))}
+                    </select>
+                  
 
+                  {selectedChild && (
+                    <select style={{margin: "0px 10px"}}
+                      value={selectedGrandchild}
+                      onChange={(e) => setSelectedGrandchild(e.target.value)}
+                    >
+                      <option value="">Chọn danh mục</option>
+                      {categoriesData
+                        .find((category) => category.title === "Sản phẩm")
+                        ?.childrens.find((child) => child.title === selectedChild)
+                        ?.childrens.map((grandchild) => (
+                          <option key={grandchild.id} value={grandchild.title}>
+                            {grandchild.title}
+                          </option>
+                        ))}
+                    </select>
+                  )}
+
+                  {selectedGrandchild && (
+                    <select
+                      value={selectedSmall}
+                      onChange={(e) => setSelectedSmall(e.target.value)}
+                    >
+                      <option value="">Chọn danh mục</option>
+                      {categoriesData
+                        .find((category) => category.title === "Sản phẩm")
+                        ?.childrens.find((child) => child.title === selectedChild)
+                        ?.childrens.find((child) => child.title === selectedGrandchild)
+                        ?.childrens.map((grandchild) => (
+                          <option key={grandchild.id} value={grandchild.title}>
+                            {grandchild.title}
+                          </option>
+                        ))}
+                    </select>
+                  )}
+
+             </div>
           
             <span style={{marginRight:"530px"}}>Chọn file Qrcode</span>
             <div id="createProductFormFile">

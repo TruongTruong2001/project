@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { useSelector ,useDispatch} from "react-redux";
 import SearchIcon from '@mui/icons-material/Search';
 import Navbar from "./Navbar";
+import logo from "./logo.png";
 const Header = ({activeHeading}) => {
     const { cartItems } = useSelector((state) => state.cart);
     const searchResultsRef = useRef(null);
@@ -61,11 +62,12 @@ const Header = ({activeHeading}) => {
          <div className="Header">
             <div className="Header__topbar space__beetween" >
               <div className="w-[250px] pxy-8 flex mb-2 ml-8">
-                  <img src="https://theme.hstatic.net/200000348893/1000847181/14/logo.png?v=200" alt="" 
-          
-          />  
-    </div>
-    {/* Header Navbar */}
+                <span className="w-[12vmax] h-[8vmax]">  
+                    <img src={logo} alt="#"  />  
+                </span>
+             </div>
+
+  
           <div className=" flex pz__10 space__beetween" ref={switcherTab} id="navbar">
             <div
             className="navigation"
@@ -217,20 +219,23 @@ const Header = ({activeHeading}) => {
           </Link>
         </div>
       </div>
+     
+    
 
       
     </div>
+ 
+          
     
     </div>
+    
       
   </div>
     
-      <div className="rounded-red">
-            <Navbar active={activeHeading} />
-      </div>
+    
           
 
-
+  <Navbar  active={activeHeading} />
   
   </>
    

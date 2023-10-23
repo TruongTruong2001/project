@@ -30,7 +30,7 @@ import {
   ALL_REVIEW_FAIL
 } from "../constans/ProductConstans";
 
-export const getProduct= (keyword="",category) => async (dispatch)=>{
+export const getProduct= (keyword="",childcategory) => async (dispatch)=>{
   try {
       dispatch({
           type: ALL_PRODUCT_REQUEST
@@ -38,8 +38,8 @@ export const getProduct= (keyword="",category) => async (dispatch)=>{
 
      let link = `/api/v2/products?keyword=${keyword}`;
       
-     if(category){
-      link = `/api/v2/products?keyword=${keyword}&category=${category}`;
+     if(childcategory){
+      link = `/api/v2/products?keyword=${keyword}&childcategory=${childcategory}`;
      }
       const {data} = await axios.get(link);
 

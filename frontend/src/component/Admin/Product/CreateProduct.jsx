@@ -15,6 +15,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import Grid3x3Icon from '@mui/icons-material/Grid3x3';
 import TimelapseIcon from '@mui/icons-material/Timelapse';
 import ReactQuill from "react-quill";
+import { categoriesData } from "./sidebarData";
 import "react-quill/dist/quill.snow.css";
 
 const modules = {
@@ -55,29 +56,22 @@ const CreateProduct = ({ history }) => {
   const dispatch = useDispatch();
 
   const { loading, error, success } = useSelector((state) => state.createProduct);
-
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedChild, setSelectedChild] = useState('');
+  const [selectedGrandchild, setSelectedGrandchild] = useState('');
+  const [selectedSmall, setSelectedSmall] = useState('');
+ 
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
   const [description, setDescription] = useState("");
   const [consignment, setConsignment] = useState("");
-  const [category, setCategory] = useState("");
-  
   const [expiration, setExpiration] = useState();
   const [Stock, setStock] = useState("");
   const [offerPrice, setOfferPrice] = useState("");
   const [images, setImages] = useState([]);
   const [imagesPreview, setImagesPreview] = useState([]);
-
   const [qrcode, setQRcode] = useState([]);
   
-  const categories = [
-    "Thịt",
-    "Rau",
-    "Gia vị",
-    "Trái cây",
-    "Thực phẩm chế biến"
-  ];
-
   useEffect(() => {
     if (error) {
       toast.error(error);
@@ -95,21 +89,24 @@ const CreateProduct = ({ history }) => {
     e.preventDefault();
 
     const myForm = new FormData();
-
+    
     myForm.set("name", name);
     myForm.set("price", price);
     myForm.set("offerPrice", offerPrice);
     myForm.set("description", description);
-    myForm.set("category", category);
     myForm.set("Stock", Stock);
     myForm.set("expiration", expiration);
     myForm.set("consignment", consignment);
     myForm.set("qrcode", qrcode);
+    myForm.set("category", selectedCategory)
+    myForm.set("subcategory", selectedChild);
+    myForm.set("childcategory", selectedGrandchild);
+    myForm.set("smallcategory", selectedSmall);
     images.forEach((image) => {
       myForm.append("images", image);
     });
 
-    
+   
     
     dispatch(createProduct(myForm));
   };
@@ -151,16 +148,6 @@ const CreateProduct = ({ history }) => {
     setDescription(editor.getHTML());
   };
  
-  // const createProductImagesChange = (event) => {
-  //   const files = Array.from(event.target.files);
-  //   const uploadedImages = [];
-  //   for (let i = 0; i < files.length; i++) {
-  //     uploadedImages.push(URL.createObjectURL(files[i]));
-  //   }
-  //   setImages((old) => [...old, ...uploadedImages]);
-
-
-  // };
   return (
     <Fragment>
       <MetaData title="Create Product" />
@@ -235,18 +222,7 @@ const CreateProduct = ({ history }) => {
                   />
                 </div>
           </div>
-          {/* <div style={{marginLeft:"30px"}}>
-                  <Grid3x3Icon />
-                  <input
-                    type="text"
-                    placeholder="Nhập vào mã lô hàng"
-                    required
-                    onChange={(e) =>  
-                      setConsignment(e.target.value)}
-                    value={consignment}
-                  />
-                </div> */}
-
+       
             <span style={{marginRight:"540px"}}>Chọn file Qrcode</span>
             <div id="createProductFormFile">
 
@@ -257,7 +233,7 @@ const CreateProduct = ({ history }) => {
                  <a href="" >{qrcode && <img style={{width:"50px"}} src={qrcode} />}</a>   
             </div>
 
-            <span style={{marginRight:"485px"}}>Chọn ảnh cho sản phẩm </span>
+            <span >Chọn ảnh cho sản phẩm </span>
             <div id="createProductFormFile">
               <input
                 type="file"
@@ -278,14 +254,61 @@ const CreateProduct = ({ history }) => {
 
             <div>
               <AccountTreeIcon />
-              <select onChange={(e) => setCategory(e.target.value)}>
-                <option value="">Chọn loại</option>
-                {categories.map((cate) => (
-                  <option key={cate} value={cate}>
-                    {cate}
-                  </option>
-                ))}
-              </select>
+                
+              <select 
+                      value={selectedChild}
+                      onChange={(e) => {
+                    
+                        setSelectedChild(e.target.value);
+                        setSelectedGrandchild('');
+                      }}
+                    >
+                         <option value="">Chọn danh mục</option>
+                      {categoriesData
+                        .find((category) => category.title === "Sản phẩm")
+                        ?.childrens.map((child) => (
+                          <option key={child.id} value={child.title}>
+                            {child.title}
+                          </option>
+                        ))}
+                    </select>
+                  
+
+                  {selectedChild && (
+                    <select style={{margin: "0px 10px"}}
+                      value={selectedGrandchild}
+                      onChange={(e) => setSelectedGrandchild(e.target.value)}
+                    >
+                      <option value="">Chọn danh mục</option>
+                      {categoriesData
+                        .find((category) => category.title ===  "Sản phẩm")
+                        ?.childrens.find((child) => child.title === selectedChild)
+                        ?.childrens.map((grandchild) => (
+                          <option key={grandchild.id} value={grandchild.title}>
+                            {grandchild.title}
+                          </option>
+                        ))}
+                    </select>
+                  )}
+
+                  {selectedGrandchild && (
+                    <select
+                      value={selectedSmall}
+                      onChange={(e) => setSelectedSmall(e.target.value)}
+                    >
+                      <option value="">Chọn danh mục</option>
+                      {categoriesData
+                        .find((category) => category.title ===  "Sản phẩm")
+                        ?.childrens.find((child) => child.title === selectedChild)
+                        ?.childrens.find((child) => child.title === selectedGrandchild)
+                        ?.childrens.map((grandchild) => (
+                          <option key={grandchild.id} value={grandchild.title}>
+                            {grandchild.title}
+                          </option>
+                        ))}
+                    </select>
+                  )}
+
             </div>
 
             <div>

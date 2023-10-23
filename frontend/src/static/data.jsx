@@ -10,7 +10,7 @@ export const navItems = [
     },
     {
       title: "Nông sản",
-      url: "/Nongsan",
+      url: "/nongsans",
     },
     {
       title: "Blog",

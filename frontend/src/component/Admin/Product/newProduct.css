@@ -24,7 +24,7 @@
   justify-content: space-evenly;
   min-height: 85%!important;
   margin-top: 20px;
-  width: 112vh;
+  width: 100vh;
   background-color: white;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.267);
 }
@@ -182,4 +182,9 @@ color: rgba(0, 0, 0, 0.623);
   height: 35rem; /* Chiều cao tự động điều chỉnh để giữ tỷ lệ khung hình */
   margin: 0px 10rem;
 
+}
+.react-quill {
+  background-color: #fff;
+  width: 112vh;
+  color: red;
 }

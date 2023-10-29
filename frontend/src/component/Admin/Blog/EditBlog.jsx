@@ -184,7 +184,7 @@ const UpdateBlog = ({ history, match }) => {
               />
             </div>
           
-            <span style={{marginTop:"10px",marginRight:"520px"}}>Chọn ảnh cho blog</span>
+            <h3 style={{width:"99%",marginRight:"10px "}}>Chọn ảnh cho blog</h3>
             <div id="createProductFormFile">
               <input
               placeholder=""
@@ -207,7 +207,7 @@ const UpdateBlog = ({ history, match }) => {
                 <img key={index} src={image} alt="Product Preview" />
               ))}
             </div>
-            <div className="w-[600px] border-red-500">
+            <div className=" border-red-500">
                   <ReactQuill
                    className="border-green-500 "
                     theme="snow"

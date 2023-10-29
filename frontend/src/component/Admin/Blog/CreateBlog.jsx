@@ -11,13 +11,14 @@ import { NEW_BLOG_RESET } from "../../../constans/BlogConstans";
 import { ToastContainer, toast } from 'react-toastify';
 import Grid3x3Icon from '@mui/icons-material/Grid3x3';
 import TimelapseIcon from '@mui/icons-material/Timelapse';
-import ReactQuill from "react-quill";
+import ReactQuill ,{Quill} from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
 const modules = {
   toolbar: [
-    //[{ 'font': [] }],
-    [{ header: [1, 2, false] }],
+    [{ 'font': [] }],
+    [{ header: [1, 2,3, false] }],
+    [{size: []}],
     ["bold", "italic", "underline", "strike", "blockquote"],
     [
       { list: "ordered" },
@@ -25,14 +26,28 @@ const modules = {
       { indent: "-1" },
       { indent: "+1" },
     ],
-    ["link", "image"],
+    ["link", "image", 'video'],
     [{ align: [] }, { color: [] }, { background: [] }], // dropdown with defaults from theme
     ["clean"],
+   
+    
   ],
-};
+  clipboard: {
+    // toggle to add extra line breaks when pasting HTML:
+    matchVisual: false
+  },
+  imageResize: {
+    parchment: Quill.import('parchment'),
+    modules: ['Resize', 'DisplaySize','Toolbar'],
+    editable: true,
+    
+  },
+  
+ 
 
+};
 const formats = [
-  //'font',
+  'font',
   "header",
   "bold",
   "italic",
@@ -44,6 +59,8 @@ const formats = [
   "indent",
   "link",
   "image",
+  "video",
+  'expand',
   "align",
   "color",
   "background",
@@ -130,7 +147,7 @@ const CreateBlog = ({ history }) => {
             encType="multipart/form-data"
             onSubmit={createBlogSubmitHandler}
           >
-            <h1>Thêm sản phẩm mới</h1>
+            <h1>Tạo Blog mới</h1>
 
             <div>
               <SpellcheckIcon />
@@ -142,23 +159,14 @@ const CreateBlog = ({ history }) => {
                 onChange={(e) => setTitle(e.target.value)}
               />
             </div>
-
-            <div>
-              <SpellcheckIcon />
-              <input
-                type="text"
-                placeholder="nhập vào mô tả"
-                required
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-              />
-            </div>
            
           <div>
 
+
+
           </div>
         
-            <span style={{marginRight:"485px"}}>Chọn ảnh cho sản phẩm </span>
+            <h4 style={{width:"100%",marginRight:"10px"}} >Chọn ảnh cho sản phẩm </h4>
             <div id="createProductFormFile">
               <input
                 type="file"
@@ -173,6 +181,18 @@ const CreateBlog = ({ history }) => {
             {imagesPreview.map((image) => (
                 <img key={image} src={image} alt="uploaded" />
              ))}
+            </div>
+
+            <div> 
+                  <ReactQuill
+                   className="react-quill"
+                    theme="snow"
+                    modules={modules}
+                    formats={formats}
+                    value={description}
+                    onChange={handleChange}
+                  />
+          
             </div>
 
             <Button

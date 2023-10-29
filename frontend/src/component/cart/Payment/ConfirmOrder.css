@@ -7,9 +7,6 @@
     margin: auto;
     box-sizing: border-box;
 }
-.confirmshippingArea{
-  background-color: white;
-}
 
 .MuiTypography-body1 {
     font-size: 1rem;
@@ -56,11 +53,11 @@
   
   .button-35 {
     align-items: center;
-    background-color: #fff;
+    background-color: #FF6635;
     border-radius: 12px;
     box-shadow: transparent 0 0 0 3px,rgba(18, 18, 18, .1) 0 6px 20px;
     box-sizing: border-box;
-    color: #121212;
+    color: white;
     cursor: pointer;
     display: inline-flex;
     flex: 1 1 auto;
@@ -80,6 +77,7 @@
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
+    width: 100%;
   }
   
   .button-35:hover {

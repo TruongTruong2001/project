@@ -49,19 +49,19 @@ h1.discountPrice {
   width: 17vmax!important;
   height: 150px;
   object-fit: cover;
- 
   display: flex;
   flex-direction: column;
   text-decoration: none;
   color: rgb(48, 48, 48);
-  margin: 2vmax;
   transition: all 0.5s;
   padding-bottom: 0.5vmax;
+  bottom: 40px;
+
 
 }
 
 .ProductCard > div {
-  margin: 0.5vmax;
+  margin: 0.9vmax;
   display: block;
   
 }
@@ -177,13 +177,12 @@ button.Home__button {
   max-width: 100%;
 }
 .ProductCard {
-  width: 16vmax!important;
+  width: 15vmax!important;
   height: fit-content;
-
   flex-direction: column;
   text-decoration: none;
   color: rgb(48, 48, 48);
-  margin:0px 2vmax;
+  margin:20px 2vmax;
   transition: all 0.5s;
   padding-bottom: 0.5vmax;
 }
@@ -349,4 +348,10 @@ button.Home__button {
   flex-shrink: 0;
   user-select: none;
   margin: 0px 6px;
+}
+.ProductCard > div img:hover{
+  -webkit-transform: scale(1.2);
+  transform: scale(1.1);
+  transition-duration: 1s;
+  margin-bottom: 10px;
 }

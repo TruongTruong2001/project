@@ -9,13 +9,12 @@ import BottomTab from "../../../more/BottomTab";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+
 const Shipping = ({ history }) => {
   const dispatch = useDispatch();
 
   const { shippingInfo } = useSelector((state) => state.cart);
-
   const [address, setAddress] = useState(shippingInfo.address);
-
   const [name, setName] = useState(shippingInfo.name);
   const [city, setCity] = useState(shippingInfo.city);
   const [province, setProvince] = useState(shippingInfo.province);
@@ -29,7 +28,7 @@ const Shipping = ({ history }) => {
       return;
     } else {
       dispatch(saveShippingInfo({ address, name, city, province, phoneNo }));
-      history.push("/payment");
+      history.push("/placeorder");
     }
   };
 

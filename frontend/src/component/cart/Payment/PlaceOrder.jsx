@@ -1,7 +1,7 @@
-import React from "react";
+import React  ,{useState} from "react";
 import "./ConfirmOrder.css";
 import { useDispatch, useSelector } from "react-redux";
-import CheckoutSteps from "../CheckStep/CheckoutSteps.jsx";
+import { Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import BottomTab from "../../../more/BottomTab.jsx";
 import { ORDER_CREATE_RESET } from "../../../constans/OrderConstans";
@@ -18,6 +18,7 @@ export default function PlaceOrder({ history }) {
   const { shippingInfo, cartItems, paymentInfo1 } = useSelector(
     (state) => state.cart
   );
+  const [method, setMethod] = useState(paymentInfo1.method);
 
   const cart = useSelector((state) => state.cart);
 
@@ -27,8 +28,7 @@ export default function PlaceOrder({ history }) {
   );
 
   const subtotal = productPrice;
-  cart.shippingCharges = cart.itemsPrice < 150000 ? 20000 : 0;
-
+  cart.shippingCharges = cart.itemsPrice < 150000 ? 20000 : 0
   cart.totalPrice = subtotal + cart.shippingCharges;
 
   const address = `${shippingInfo.address},${shippingInfo.name}, ${shippingInfo.state}, ${shippingInfo.country}`;
@@ -41,23 +41,26 @@ export default function PlaceOrder({ history }) {
       dispatch({ type: ORDER_CREATE_RESET });
     }
   }, [history, dispatch, success, order]);
-
-  const vnpay = () => {
-    history.push("https://sandbox.vnpayment.vn/tryitnow/Home/CreateOrder");
-  };
   const placeOrderHandler = () => {
-    dispatch(
-      createOrder({
-        orderItems: cart.cartItems,
-        shippingInfo: cart.shippingInfo,
-        paymentInfo1: cart.paymentInfo1,
-        itemsPrice: cart.itemsPrice,
-        shippingPrice: cart.shippingCharges,
-        taxPrice: cart.taxPrice,
-        totalPrice: cart.totalPrice,
-      })
-    );
-    history.push("/success");
+    if( method === 'Thanh toán bằng VnPay'){
+      history.push(`/vnpay`)
+
+    }else if ( method === 'Thanh toán bằng ') {
+      dispatch(
+        createOrder({
+          orderItems: cart.cartItems,
+          shippingInfo: cart.shippingInfo,
+          paymentInfo1: cart.paymentInfo1,
+          itemsPrice: cart.itemsPrice,
+          shippingPrice: cart.shippingCharges,
+          taxPrice: cart.taxPrice,
+          totalPrice: cart.totalPrice,
+        })
+      );
+      history.push("/success");
+    }else if(method){
+      
+    }
   };
 
   return (
@@ -67,9 +70,8 @@ export default function PlaceOrder({ history }) {
       ) : (
         <>
           <Header />
-          {/* <CheckoutSteps activeStep={2} /> */}
-
-          <div className="bg-[#E7EBEE] rounded-sm" style={{ height: "50rem" }}>
+       
+          <div className="bg-[#E7EBEE] rounded-sm" style={{padding:"20px", height: "50rem" }}>
             <div className="flex justify-center">
               <div>
                 <div className="p-[20px] mb-[20px] bg-white mx-[20px] shadow-[0_3px_10px_rgb(0,0,0,0.3)]">
@@ -95,11 +97,56 @@ export default function PlaceOrder({ history }) {
                     </div>
                   </div>
                 </div>
+
+                <div>
+                <div className="p-[20px] mb-[20px] bg-white mx-[20px] shadow-[0_3px_10px_rgb(0,0,0,0.3)]">
+                  <h3 className=" text-[#1c5e08a1] ">Phương thức thanh toán</h3>
+                  <div className="">
+                    <div className="ml-[1rem]">
+                      <Typography>Chọn phương thức thanh toán</Typography>
+                      <div className="methods">
+                        <span className="code">
+                          <input
+                            type="radio"
+                            name="method"
+                            value="Thanh toán khi giao hàng (COD)"
+                            checked
+                            onChange={(e) => setMethod(e.target.value)}
+                          />
+                          <img
+                            src="https://cdn-icons-png.flaticon.com/512/9457/9457476.png"
+                            alt=""
+                          />
+                          Thanh toán khi giao hàng (COD)
+                        </span>
+                        <span className="vnpay">
+                          <input
+                            type="radio"
+                            name="method"
+                            value="Thanh toán bằng VnPay"
+                            onChange={(e) => setMethod(e.target.value)}
+                          />
+                          <img
+                            src="https://downloadlogomienphi.com/sites/default/files/logos/download-logo-vector-vnpay-mien-phi.jpg"
+                            alt=""
+                          />
+                            Thanh toán VnPay
+                        </span>
+                      </div>
+
+                    </div>
+
+                </div>
+                 
+              
+                </div>
               </div>
+              </div>
+              
 
               <div className="w-[33rem]">
                 <div className="p-[10px] w-[100%] mb-[20px] bg-white shadow-[0_3px_10px_rgb(0,0,0,0.3)]">
-                  <h3 className="text-[#1c5e08a1] ">Danh sách sản phẩm:</h3>
+                  <h3 className="text-[#1c5e08a1] ">Danh sách sản phẩm</h3>
 
                   {cartItems.length === 0 ? (
                     <div className="">"adas"</div>
@@ -149,28 +196,17 @@ export default function PlaceOrder({ history }) {
                         currency: "VND",
                       }).format(cart.shippingCharges)}`}</span>
                     </div>
-                    {/* <div>
-                    <button class="button-13" role="button">
-                      <a href="https://sandbox.vnpayment.vn/tryitnow/Home/CreateOrder">
-                        <img
-                          style={{ width: "130px" }}
-                          src="https://www.visa.com/images/merchantoffers/2022-06/1655805592735.logo-vnpay-608x220.jpg"
-                          alt=""
-                        />
-                      </a>
-                    </button>
-                  </div> */}
+               
 
-                    <div></div>
                   </div>
 
-                  <div className="">
+                  <div className="mb-[10px]">
                     <div className="flex">
                       <p>
-                        <b>Thành tiền:</b>{" "}
+                        <b>Thành tiền:</b>
                       </p>
 
-                      <div className="ml-[19rem] text-red-500">
+                      <div className="ml-[19rem] text-red-600">
                         {`${new Intl.NumberFormat("de-DE", {
                           style: "currency",
                           currency: "VND",

@@ -7,39 +7,48 @@ import BlogCard from "./BlogCard";
 import { clearErrors, getBlog } from "../../actions/BlogActions";
 import Pagination from "react-js-pagination";
 import MetaData from "../../more/Metadata";
-import Typography from"@material-ui/core/Typography"
-// import { useAlert } from "react-alert";
 import BottomTab from "../../more/BottomTab";
-
+import axios from "axios";
 const Blogs = ({ match }) => {
   const dispatch = useDispatch();
  
   const [currentPage, setCurrentPage] = useState(1);
-  
-  const [category,setCategory] = useState("");
-
-  const {
-    blogs,
-    loading,
-    error,
-    blogsCount,
-    resultPerPage,
-  } = useSelector((state) => state.blogs);
-
+  const [totalPages, setTotalPages] = useState(1);
   const keyword = match.params.keyword;
 
-  const setCurrentPageNo = (e) => {
-    setCurrentPage(e);
+  const [blog, setBlog] = useState([]);
+  const { loading, error } = useSelector((state) => state.blogs);
+
+  const fetchBlogs = async () => {
+    try {
+      const response = await axios.get(
+        `/api/v2/blogs?page=${currentPage}&limit=8`
+      );
+      setBlog(response.data.blogs);
+      setTotalPages(response.data.totalPages);
+     
+    } catch (error) {
+      console.error("Error fetching blogs: ", error);
+    }
+  };
+  
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
   };
 
 
   useEffect(() => {
-      if(error){
-          alert(error);
-          dispatch(clearErrors())
-      }
-    dispatch(getBlog());
-  }, [dispatch,alert,error]); 
+    if (error) {
+      alert(error);
+      dispatch(clearErrors());
+    }
+    dispatch(getBlog(keyword));
+      fetchBlogs();
+    
+
+  }, [dispatch, keyword, alert, error,currentPage]);
+
+ 
 
 
 
@@ -53,7 +62,7 @@ const Blogs = ({ match }) => {
           <Header activeHeading={4}/>
 
         <div>
-             {blogs.length === 0 ?
+             {blog.length === 0 ?
              <span style={{
                display:"block",
                padding:"30px 0",
@@ -71,8 +80,8 @@ const Blogs = ({ match }) => {
                flex:".9"
              }}
            >
-             {blogs &&
-               blogs.map((blog) => (
+             {blog &&
+               blog.map((blog) => (
                  <BlogCard key={blog.id} blog={blog} />
                ))}
            </div>
@@ -89,20 +98,17 @@ const Blogs = ({ match }) => {
                   margin: "6vmax",
                 }}
               >
-                {/* <Pagination
-                  activePage={currentPage}
-                  itemsCountPerPage={resultPerPage}
-                  totalItemsCount={productsCount}
-                  onChange={setCurrentPageNo}
-                  nextPageText="Next"
-                  prevPageText="Prev"
-                  firstPageText="First"
-                  lastPageText="Last"
-                  itemClass="page-item"
-                  linkClass="page-link"
-                  activeClass="pageItemActive"
-                  activeLinkClass="pageLinkActive"
-                /> */}
+                   <Pagination
+                activePage={currentPage}
+                itemsCountPerPage={6}
+                totalItemsCount={totalPages * 10}
+                pageRangeDisplayed={3}
+                onChange={handlePageChange}
+                itemClass="page-item"
+                linkClass="page-link"
+                prevPageText="<<"
+                nextPageText=">>"
+              />
               </div>
         
           <Footer />

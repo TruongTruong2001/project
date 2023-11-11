@@ -14,7 +14,6 @@ import UpdatePassword from "./component/user/UpdatePassword";
 import EditProfile from "./component/user/EditProfile";
 import About from "./component/about/About";
 import Products from "./component/Products/Products";
-
 import Blogs from "./component/Blogs/Blogs";
 import Search from "./component/Products/Search";
 import Support from "./more/Support";
@@ -51,10 +50,15 @@ import ForgotPassword from "./component/user/ForgotPassword";
 import ResetPassword from "./component/user/ResetPassword";
 import Notfound from "./more/Notfound";
 import PlaceOrder from "./component/cart/Payment/PlaceOrder";
+import Pagination from "./component/Products/Pagination";
 import Qrcode from "./component/Admin/Qrcode/Qrcode";
 import EditQrcode from "./component/Admin/Qrcode/EditQrcode";
 import Agriculture from "./component/Products/Agriculture";
-import Vnpay from "./component/cart/Payment/Vnpay";
+import VnPay from "./component/Admin/VnPay/Vnpay";
+import VnpayReturn from "./component/Admin/VnPay/VnPayReturn";
+import ModalView from "./component/ModalView/ModalView";
+import SpeechRecognition from "./component/AlanAi/SpeechRecognition";
+
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
 
@@ -86,7 +90,8 @@ function App() {
           <Route exact path="/products" component={Products} />
           <Route exact path="/blogs" component={Blogs} />
           <Route exact path="/search" component={Search} />
-          <Route exact path="/vnpay" component={Vnpay} />
+          <Route exact path="/vnpay" component={VnPay} />
+          <Route exact path="/pagination" component={Pagination} />
           <Route exact path="/products/:keyword" component={Products} />
           <Route exact path="/nongsans" component={Agriculture} />
           <Route exact path="/support" component={Support} />
@@ -95,16 +100,18 @@ function App() {
           <Route exact path="/creator" component={CommingSoon} />
           <Route exact path="/faq" component={Rules} />
           <Route exact path="/contact" component={Contact} />
-          <Route exact path="/vnpay" component={Vnpay} />
           <Route exact path="/more" component={MoreOption} />
+          <Route exact path="/modal" component={ModalView} />
           <ProtectedRoute exact path="/chatgpt3" component={Chatgpt3} />
           <Route exact path="/password/forgot" component={ForgotPassword} />
+          <Route exact path="/speech" component={SpeechRecognition} />
           <Route
             exact
             path="/password/reset/:token"
             component={ResetPassword}
           />
           <ProtectedRoute exact path="/shipping" component={Shipping} />
+          <ProtectedRoute exact path="/vnpay_return" component={VnpayReturn} />
           <Route exact path="/payment" component={Payment} />
           <Route exact path="/placeorder" component={PlaceOrder} />
           <ProtectedRoute

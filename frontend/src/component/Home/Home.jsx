@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import "./Home.css";
 import Carousel from "react-material-ui-carousel";
 import ProductCard from "../Products/ProductCard";
@@ -9,11 +9,12 @@ import MetaData from "../../more/Metadata";
 import Footer from "../../Footer";
 import BottomTab from "../../more/BottomTab";
 import { ToastContainer, toast } from "react-toastify";
+import ModalView from "../ModalView/ModalView";
 import "react-toastify/dist/ReactToastify.css";
-
 const Home = () => {
   const dispatch = useDispatch();
   const { products, error } = useSelector((state) => state.products);
+  const [isCartOpen, setIsCartOpen] = useState(false);
   useEffect(() => {
     if (error) {
       toast.error(error);
@@ -28,6 +29,14 @@ const Home = () => {
         <MetaData title="Trang chủ" />
 
         <Header activeHeading={1} />
+        <div>
+      {/* Your other components */}
+      {isCartOpen && (
+        <ModalView onClose={() => setIsCartOpen(true)}>
+        
+        </ModalView>
+      )}
+    </div>
 
         {/* Carousel */}
         <div className="flex justify-center ">

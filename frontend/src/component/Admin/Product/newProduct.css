@@ -16,6 +16,7 @@
 }
 
 .createProductForm {
+  
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,9 +25,9 @@
   justify-content: space-evenly;
   min-height: 85%!important;
   margin-top: 20px;
-  width: 100vh;
+  width: 125vh;
   background-color: white;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.267);
+  box-shadow: 0 0 10px rgba(84, 41, 41, 0.267);
 }
 
 .createProductForm > div {
@@ -62,7 +63,7 @@ border-radius: 4px;
 font: 300 0.9vmax cursive;
 outline: none;
 margin: 10px auto;
-width: 20rem;
+width: 26rem;
 }
 
 

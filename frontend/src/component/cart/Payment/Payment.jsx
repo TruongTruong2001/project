@@ -1,12 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import CheckoutSteps from "../CheckStep/CheckoutSteps.jsx";
 import { useSelector, useDispatch } from "react-redux";
 import MetaData from "../../../more/Metadata.jsx";
 import { Typography } from "@material-ui/core";
 import Header from "../../Home/Header.jsx";
-
 import "./payment.css";
-import { createOrder, clearErrors } from "../../../actions/OrderAction.jsx";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Loading from "../../../more/Loader.jsx";

@@ -50,15 +50,31 @@ exports.getAdminBlogs = catchAsyncErrors(async (req, res, next) => {
 
 // get All Products
 exports.getAllBlogs = catchAsyncErrors(async (req, res) => {
-  // const resultPerPage = 35;
+  
+  const page = parseInt(req.query.page) || 1;
+  const limit = parseInt(req.query.limit) || 8;
 
-  const blogs = await Blog.find().sort({ createdAt: -1 });
-
-  res.status(200).json({
-    success: true,
-    blogs,
+  
+  try {
    
-  });
+  const query ={}
+    // Sử dụng query object trong truy vấn MongoDB
+    const blogs = await Blog.find(query)
+      .skip((page - 1) * limit)
+      .limit(limit)
+      .exec();
+  
+    const totalBlogs = await Blog.countDocuments(query); // Đếm số lượng sản phẩm dựa trên query object
+  
+    res.status(200).json({
+      success: true,
+      blogs,
+      totalPages: Math.ceil(totalBlogs / limit),
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: 'Internal Server Error' });
+  }
 });
 
 // Update Product ---Admin

@@ -50,16 +50,35 @@ exports.getAdminProducts = catchAsyncErrors(async (req, res, next) => {
 
 // get All Products
 exports.getAllProducts = catchAsyncErrors(async (req, res) => {
-  // const resultPerPage = 35;
+  const page = parseInt(req.query.page) || 1;
+  const limit = parseInt(req.query.limit) || 12;
+  const subcategory = req.query.subcategory; // Lấy giá trị category từ query params
 
-  const products = await Product.find().sort({ createdAt: -1 });
+  try {
+    let query = {};
 
-  res.status(200).json({
-    success: true,
-    products,
-    // productsCount,
-    // resultPerPage,
-  });
+    // Nếu có giá trị category được gửi từ frontend, thêm điều kiện tìm kiếm theo category vào query object
+    if (subcategory) {
+      query.subcategory = subcategory;
+    }
+
+    // Sử dụng query object trong truy vấn MongoDB
+    const products = await Product.find(query)
+      .skip((page - 1) * limit)
+      .limit(limit)
+      .exec();
+
+    const totalProducts = await Product.countDocuments(query); // Đếm số lượng sản phẩm dựa trên query object
+
+    res.status(200).json({
+      success: true,
+      products,
+      totalPages: Math.ceil(totalProducts / limit),
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: "Internal Server Error" });
+  }
 });
 
 // Update Product ---Admin
@@ -238,7 +257,7 @@ exports.deleteReview = catchAsyncErrors(async (req, res, next) => {
       new: true,
       runValidators: true,
       useFindAndModify: false,
-    } 
+    }
   );
 
   res.status(200).json({
@@ -246,4 +265,4 @@ exports.deleteReview = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
-// 
+//

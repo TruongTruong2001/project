@@ -223,9 +223,9 @@ const CreateProduct = ({ history }) => {
                 </div>
           </div>
        
-            <span style={{marginRight:"540px"}}>Chọn file Qrcode</span>
+           <h4 style={{marginRight:"49vmax"}}>Chọn file Qrcode</h4>
             <div id="createProductFormFile">
-
+            
               <input type="file" onChange={handleImageChange} />
    
             </div>
@@ -233,7 +233,7 @@ const CreateProduct = ({ history }) => {
                  <a href="" >{qrcode && <img style={{width:"50px"}} src={qrcode} />}</a>   
             </div>
 
-            <span >Chọn ảnh cho sản phẩm </span>
+            <span  style={{marginRight:"45vmax"}}>Chọn ảnh cho sản phẩm </span>
             <div id="createProductFormFile">
               <input
                 type="file"

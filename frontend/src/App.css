@@ -265,7 +265,7 @@ label.MuiRating-label {
     height: unset!important;
   }
   .Footer.flex.space__around.pz__15 {
-    
+    color:black;
     flex-direction: column;
     align-items: center;
     margin-bottom: 8vmax;

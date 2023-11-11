@@ -6,15 +6,16 @@ import {
   deleteBlog,
   getAdminBlog,
 } from "../../../actions/BlogActions";
-
 import MetaData from "../../../more/Metadata";
-import { Sidebar } from "@chatscope/chat-ui-kit-react";
-import { ToastContainer, toast } from 'react-toastify';
 
+import SideBar from "../Sidebar/Sidebar";
 import { Button } from "@material-ui/core";
 import { DELETE_BLOG_RESET } from "../../../constans/BlogConstans";
-
+import { ToastContainer, toast } from 'react-toastify';
 import { Link } from "react-router-dom";
+
+
+
 const AllBlogs = ({history}) => {
     const dispatch = useDispatch();
     const { error, blogs } = useSelector((state) => state.blogs);
@@ -133,7 +134,7 @@ const columns = [
       <MetaData title={`Danh sách blog - Admin`} />
 
       <div className="dashboard">
-        <Sidebar />
+        <SideBar />
         <div className="productListContainer">
           <h1 id="productListHeading">Danh sách blog</h1>
       

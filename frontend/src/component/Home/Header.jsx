@@ -6,10 +6,34 @@ import { useSelector, useDispatch } from "react-redux";
 import SearchIcon from "@mui/icons-material/Search";
 import Navbar from "./Navbar";
 import logo from "./logo.png";
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
+import SpeechRecognition from "../AlanAi/SpeechRecognition";
+import ModalView from "../ModalView/ModalView";
+
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
+
+
 const Header = ({ activeHeading }) => {
   const { cartItems } = useSelector((state) => state.cart);
   const searchResultsRef = useRef(null);
-
+  const divRef = useRef(null);
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const [isToggled, setIsToggled] = useState(false);
   const { favouriteItems } = useSelector((state) => state.favourite);
   const [searchData, setSearchData] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
@@ -27,6 +51,37 @@ const Header = ({ activeHeading }) => {
       }
     });
   });
+  useEffect(() => {
+    const handleMouseDown = (event) => {
+      // Kiểm tra xem click có diễn ra bên ngoài element hay không
+      if (divRef.current && !divRef.current.contains(event.target)) {
+        setIsToggled(false);
+      }
+    };
+
+    // Đăng ký sự kiện mousedown cho toàn bộ document
+    document.addEventListener('mousedown', handleMouseDown);
+
+    return () => {
+      // Hủy đăng ký sự kiện khi component unmount
+      document.removeEventListener('mousedown', handleMouseDown);
+    };
+  }, []); // Chạy một lần khi component được mount
+  useEffect(() => {
+    const handleBodyClick = (e) => {
+      if (
+        searchResultsRef.current &&
+        !searchResultsRef.current.contains(e.target)
+      ) {
+        setSearchData(null);
+      }
+    };
+    document.body.addEventListener("click", handleBodyClick);
+
+    return () => {
+      document.body.removeEventListener("click", handleBodyClick);
+    };
+  }, []);
 
   const handleSearchChange = (e) => {
     const term = e.target.value;
@@ -40,32 +95,36 @@ const Header = ({ activeHeading }) => {
     setSearchData(filteredProducts);
   };
 
-  useEffect(() => {
-    const handleBodyClick = (e) => {
-      if (
-        searchResultsRef.current &&
-        !searchResultsRef.current.contains(e.target)
-      ) {
-        setSearchData(null);
-      }
-    };
-
-    document.body.addEventListener("click", handleBodyClick);
-
-    return () => {
-      document.body.removeEventListener("click", handleBodyClick);
-    };
-  }, []);
+  const handleToggle = () => {
+    setIsToggled(!isToggled);
+  };
 
   return (
     <>
-      <div className="Header">
-        <div className="Header__topbar space__beetween">
-          <div className="w-[250px] pxy-8 flex mb-2 ml-8">
+      <div>
+   
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+         <SpeechRecognition />
+
+        </Box>
+      </Modal>
+    </div>
+      <div className="Header relative">
+        <div className="Header__topbar space__beetween ">
+          <div className="w-[250px] pxy-8 flex mb-2 ml-8 ">
             <a href="" className="w-[160px]">
-            <img  style={{width:"150px", height:"50px",objectFit:"cover"}} src={logo} alt="#" />
+              <img
+                style={{ width: "150px", height: "50px", objectFit: "cover" }}
+                src={logo}
+                alt="#"
+              />
             </a>
-      
           </div>
 
           <div
@@ -91,6 +150,7 @@ const Header = ({ activeHeading }) => {
                   size={20}
                   className="absolute right-2 top-2.5 cursor-pointer"
                 />
+
                 {searchData && searchData.length !== 0 ? (
                   <div
                     className="border-b-gray-40 absolute max-h-[55vh] border-blue-300 mt-[5px] flow-none 
@@ -133,7 +193,10 @@ const Header = ({ activeHeading }) => {
                 ) : null}
               </div>
             </div>
-
+            <div onClick={handleOpen}>
+            <img style={{width:"30px"}} src="https://cdn-icons-png.flaticon.com/128/3128/3128290.png" alt="" />
+            </div>
+          
             <div className="rightOption flex align__items__center">
               <div className="heart__products flex pointer relative">
                 <Link to="/favourites">
@@ -176,23 +239,25 @@ const Header = ({ activeHeading }) => {
               </div>
               <div className="cart__items flex align__items__center">
                 <div className="cart__items flex pointer relative">
-                  <Link to="/cart">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="25"
-                      height="25"
-                      fill="currentColor"
-                      class="bi bi-cart3 pxz__20 white"
-                      viewBox="0 0 16 16"
-                    >
-                      <path
-                        d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 
-                1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 
+                  {/* <Link to=""> */}
+                  <svg
+                    onClick={handleToggle}
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="25"
+                    right="100"
+                    height="25"
+                    fill="currentColor"
+                    class="bi bi-cart3 pxz__20 white"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 
                 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 
                 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
-                      />
-                    </svg>
-                  </Link>
+                    />
+                  </svg>
+
+                  {/* </Link> */}
                   <div
                     className="heart__numbers"
                     style={{
@@ -205,10 +270,16 @@ const Header = ({ activeHeading }) => {
                       justifyContent: "center",
                       position: "absolute",
                       top: "-30%",
-                      right: "3.5%",
+                      right: "5%",
                     }}
                   >
-                    <span>{cartItems.length}</span>
+                    <span className=" fixed">{cartItems.length}</span>
+
+                    <div  ref={divRef}  style={{ height: "1rem" }}>
+                      {isToggled && (
+                        <ModalView   style={{ border: "1px solid red" }} />
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>

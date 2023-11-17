@@ -27,6 +27,7 @@ import {
   qrcodeDetailsReducer,
   qrcodesReducer,
 } from "./reducers/QrcodeReducer.jsx";
+import alanReducer from "./reducers/AlanReducer.jsx";
 import { allUsersReducer, forgotPasswordReducer, profileReducer, userDetailsReducer, userReducer } from "./reducers/userReducer.jsx";
 import { cartReducer } from "./reducers/CartReducer.jsx";
 import { favouriteReducer } from "./reducers/FavouriteReducer.jsx";
@@ -41,6 +42,7 @@ import {
 
 const reducer = combineReducers({
   products: productsReducer,
+  alan: alanReducer,
   blogs: blogsReducer,
   qrcodes: qrcodesReducer,
   deleteQrcode:deleteQrcodeReducer,

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./Shipping.css";
 import Header from "../../Home/Header";
 import { useSelector, useDispatch } from "react-redux";
@@ -8,38 +8,31 @@ import { saveShippingInfo } from "../../../actions/CartAction";
 import BottomTab from "../../../more/BottomTab";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { setHoten } from "../../../actions/AlanActions";
-
-const Shipping = ({ history , hoten}) => {
+import SpeechRecognition from "../../AlanAi/SpeechRecognition";
+const Shippingcard = ({ history, hoten, address, phone, city, province }) => {
   const dispatch = useDispatch();
-
-  const { shippingInfo } = useSelector((state) => state.cart);
-  const [address, setAddress] = useState(shippingInfo.address);
-  const [name, setName] = useState(shippingInfo.name);
-
-  const [city, setCity] = useState(shippingInfo.city);
-  const [province, setProvince] = useState(shippingInfo.province);
-  const [phoneNo, setPhoneNo] = useState(shippingInfo.phoneNo);
+  const [address1, setAddress] = useState("");
+  const [name1, setName] = useState("");
+  const [city1, setCity] = useState("");
+  const [province1, setProvince] = useState("");
+  const [phoneNo, setPhoneNo] = useState("");
 
   const shippingSubmit = (e) => {
     e.preventDefault();
 
-    if (phoneNo.length < 10 || phoneNo.length > 10) {
+    if (phone.length < 10 || phone.length > 10) {
       toast.error("Số điện thoại nên phải 10 số trở lên");
       return;
     } else {
-      dispatch(saveShippingInfo({ address, name, city, province, phoneNo }));
+      dispatch(saveShippingInfo({ address, hoten, city, province, phone }));
       history.push("/placeorder");
     }
   };
-  
 
   return (
     <>
       <MetaData title="Shipping Details" />
-      <Header />
-
-      <CheckoutSteps activeStep={0} />
+     <Header/>
       <div className="shippingContainer">
         <div className="shippingBox">
           <h2 className="shippingHeading">Thông tin giao hàng</h2>
@@ -52,7 +45,7 @@ const Shipping = ({ history , hoten}) => {
             <input
               type="text"
               placeholder="Vui lòng nhập tên người nhận"
-              value={name}
+              value={hoten}
               required
               onChange={(e) => setName(e.target.value)}
             />
@@ -67,7 +60,7 @@ const Shipping = ({ history , hoten}) => {
               <input
                 type="text"
                 placeholder=" Nhập vào số phone"
-                value={phoneNo}
+                value={phone}
                 required
                 onChange={(e) => setPhoneNo(e.target.value)}
               />
@@ -96,6 +89,7 @@ const Shipping = ({ history , hoten}) => {
           </form>
         </div>
       </div>
+
       <ToastContainer
         position="bottom-center"
         autoClose={5000}
@@ -112,4 +106,4 @@ const Shipping = ({ history , hoten}) => {
   );
 };
 
-export default Shipping;
+export default Shippingcard;

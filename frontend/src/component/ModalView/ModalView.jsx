@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { removeItemsFromCart } from "../../actions/CartAction";
-function ModalView() {
+function ModalView({isDivOpen}) {
   const [showCartItems, setShowCartItems] = useState(false);
   const dispatch = useDispatch();
   const { cartItems } = useSelector((state) => state.cart);
@@ -25,7 +25,8 @@ function ModalView() {
   };
   
   return (
-    <section className="mt-[50px] mr-[30px] justify-center flex">
+   
+       <section className="   mt-[50px] mr-[30px] justify-center flex">
       <div className=" mr-[200px]  absolute h-full w-[25rem] ">
         <div className=" bg-white text-gray-700 body-font shadow-lg border rounded-lg">
           <div className="overflow-y-scroll h-[15rem] pt-2">
@@ -65,6 +66,9 @@ function ModalView() {
         </div>
       </div>
     </section>
+    
+
+   
   );
 }
 

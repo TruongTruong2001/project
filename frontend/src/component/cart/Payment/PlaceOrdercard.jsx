@@ -11,7 +11,7 @@ import { useEffect } from "react";
 import Loading from "../../../more/Loader.jsx";
 import Header from "../../Home/Header";
 
-export default function PlaceOrder({ history }) {
+export default function PlaceOrdercard({ history }) {
   window.scrollTo(0, 0);
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
@@ -31,8 +31,7 @@ export default function PlaceOrder({ history }) {
   cart.shippingCharges = cart.itemsPrice < 150000 ? 20000 : 0;
   cart.totalPrice = subtotal + cart.shippingCharges;
 
-  const address = `${shippingInfo.address},${shippingInfo.name}, ${shippingInfo.state}, ${shippingInfo.country}`;
-
+ 
   const orderCreate = useSelector((state) => state.orderCreate);
   const { order, success, error, loading } = orderCreate;
   useEffect(() => {

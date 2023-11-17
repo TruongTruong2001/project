@@ -12,7 +12,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Header from "../../Home/Header.jsx";
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
-const Cart = ({ history }) => {
+const Cart = ({ history,hoten }) => {
   const dispatch = useDispatch();
 
   const { cartItems } = useSelector((state) => state.cart);

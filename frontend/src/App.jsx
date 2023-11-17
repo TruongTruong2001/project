@@ -57,7 +57,9 @@ import Agriculture from "./component/Products/Agriculture";
 import VnPay from "./component/Admin/VnPay/Vnpay";
 import VnpayReturn from "./component/Admin/VnPay/VnPayReturn";
 import ModalView from "./component/ModalView/ModalView";
+import Shippingcard from "./component/cart/Payment/Shippingcard";
 import SpeechRecognition from "./component/AlanAi/SpeechRecognition";
+import PlaceOrdercard from "./component/cart/Payment/PlaceOrdercard";
 
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
@@ -111,9 +113,11 @@ function App() {
             component={ResetPassword}
           />
           <ProtectedRoute exact path="/shipping" component={Shipping} />
+          <ProtectedRoute exact path="/shippingcard" component={Shippingcard} />
           <ProtectedRoute exact path="/vnpay_return" component={VnpayReturn} />
           <Route exact path="/payment" component={Payment} />
           <Route exact path="/placeorder" component={PlaceOrder} />
+          <Route exact path="/placeordercard" component={PlaceOrdercard} />
           <ProtectedRoute
             exact
             path="/order/confirm"

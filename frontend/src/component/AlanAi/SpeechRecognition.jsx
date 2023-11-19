@@ -9,8 +9,9 @@ import { setAddress } from "../../actions/AlanActions";
 import { setPhone } from "../../actions/AlanActions";
 import { setCity } from "../../actions/AlanActions";
 import { setProvince } from "../../actions/AlanActions";
+import ModalCard from "../cart/Payment/ModalCard";
+import ModalPlaceOrder from "../cart/Payment/ModalPlaceOrder";
 import Shippingcard from "../cart/Payment/Shippingcard";
-
 const SpeechRecognition = () => {
   const alanBtnRef = useRef({}).current;
   const [transcript, setTranscript] = useState("");
@@ -18,6 +19,7 @@ const SpeechRecognition = () => {
   const [recognitionTimeout, setRecognitionTimeout] = useState(null);
   const [isDivOpen, setIsDivOpen] = useState(false);
   let history = useHistory();
+  const currentUrl = window.location.pathname;
   const hotenFromRedux = useSelector((state) => state.alan.hoten);
   const addressFromRedux = useSelector((state) => state.alan.address);
   const phoneFromRedux = useSelector((state) => state.alan.phone);
@@ -98,7 +100,7 @@ const SpeechRecognition = () => {
       handleConvertTextToSpeech("Mời điền thông tin giao hàng");
     } else if (command.COMMAND === "THONG_TIN") {
       dispatch(setHoten(command.payload.name));
-      console.log(command.payload.name)
+      console.log(command.payload.name);
       handleConvertTextToSpeech("Vui lòng cho biết địa chỉ liên lạc");
     } else if (command.COMMAND === "THONG_TIN_ADDRESS") {
       dispatch(setAddress(command.payload.address));
@@ -112,7 +114,7 @@ const SpeechRecognition = () => {
     } else if (command.COMMAND === "THONG_TIN_PROVINCE") {
       console.log(command.COMMAND);
       dispatch(setProvince(command.payload.province));
-      history.push("/placeordercard");
+      history.push("/modalplaceorder");
       handleConvertTextToSpeech(
         "Vui lòng chọn phương thức thanh toán và nhấn đặt hàng"
       );
@@ -138,15 +140,29 @@ const SpeechRecognition = () => {
   return (
     <>
       <div>
-        {hotenFromRedux && (
-          <Shippingcard
-            hoten={hotenFromRedux}
-            address={addressFromRedux}
-            phone={phoneFromRedux}
-            city={cityFromRedux}
-            province={provinceFromRedux}
+     
+          <div>
+        {currentUrl === '/shippingcard' ? (
+          <ModalCard 
+          hoten={hotenFromRedux}
+          address={addressFromRedux}
+          phone={phoneFromRedux}
+          city={cityFromRedux}
+          province={provinceFromRedux}
           />
+        ) : currentUrl === '/modalplaceorder' ? (
+          <ModalPlaceOrder 
+          hoten={hotenFromRedux}
+          address={addressFromRedux}
+          phone={phoneFromRedux}
+          city={cityFromRedux}
+          province={provinceFromRedux}
+          />
+        ) : (
+          // Trường hợp mặc định hoặc xử lý khác nếu cần
+          null
         )}
+      </div>
         <button id="voice" className="" onClick={handleRecognition}>
           <img
             style={{ margin: "0 120px", width: "100px" }}

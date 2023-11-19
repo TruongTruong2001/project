@@ -7,18 +7,17 @@ import BottomTab from "../../../more/BottomTab.jsx";
 import { ORDER_CREATE_RESET } from "../../../constans/OrderConstans";
 import { createOrder } from "../../../actions/OrderAction";
 import { ToastContainer, toast } from "react-toastify";
-
 import { useEffect } from "react";
 import Loading from "../../../more/Loader.jsx";
 import Header from "../../Home/Header";
-export default function PlaceOrdercard({ history,hoten,address,phone,city,province }) {
+
+export default function ModalPlaceOrder({ history }) {
   window.scrollTo(0, 0);
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
-  const { cartItems, paymentInfo1 } = useSelector(
+  const { shippingInfo, cartItems, paymentInfo1 } = useSelector(
     (state) => state.cart
   );
-   const hotenFromRedux = useSelector((state) => state.alan.hoten);
   const [method, setMethod] = useState(paymentInfo1.method);
 
   const cart = useSelector((state) => state.cart);
@@ -32,7 +31,8 @@ export default function PlaceOrdercard({ history,hoten,address,phone,city,provin
   cart.shippingCharges = cart.itemsPrice < 150000 ? 20000 : 0;
   cart.totalPrice = subtotal + cart.shippingCharges;
 
- 
+  const address = `${shippingInfo.address},${shippingInfo.name}, ${shippingInfo.state}, ${shippingInfo.country}`;
+
   const orderCreate = useSelector((state) => state.orderCreate);
   const { order, success, error, loading } = orderCreate;
   useEffect(() => {
@@ -48,10 +48,7 @@ export default function PlaceOrdercard({ history,hoten,address,phone,city,provin
       dispatch(
         createOrder({
           orderItems: cart.cartItems,
-          shippingInfo:{
-            name:hotenFromRedux,
-        
-          },
+          shippingInfo: cart.shippingInfo,
           paymentInfo1: cart.paymentInfo1,
           itemsPrice: cart.itemsPrice,
           shippingPrice: cart.shippingCharges,
@@ -82,15 +79,15 @@ export default function PlaceOrdercard({ history,hoten,address,phone,city,provin
                   <div className="ml-[1rem]">
                     <div className=" flex my-[5px]">
                       <p className="mr-[120px]">Khách hàng:</p>
-                      <span>{hoten}</span>
+                      <span>{shippingInfo.name}</span>
                     </div>
                     <div className="flex  my-[5px]">
                       <p className="mr-[115px]">Số điện thoại:</p>
-                      <span>{phone}</span>
+                      <span>{shippingInfo.phoneNo}</span>
                     </div>
                     <div className="flex   my-[5px]">
                       <p className="mr-[160px]">Địa chỉ:</p>
-                      <span>{address}</span>
+                      <span>{shippingInfo.address}</span>
                     </div>
                     <div className=" my-[5px]">
                       <p className="mr-[160px] text-black">

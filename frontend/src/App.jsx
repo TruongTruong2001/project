@@ -60,7 +60,8 @@ import ModalView from "./component/ModalView/ModalView";
 import Shippingcard from "./component/cart/Payment/Shippingcard";
 import SpeechRecognition from "./component/AlanAi/SpeechRecognition";
 import PlaceOrdercard from "./component/cart/Payment/PlaceOrdercard";
-
+import ModalCard from "./component/cart/Payment/ModalCard";
+import ModalPlaceOrder from "./component/cart/Payment/ModalPlaceOrder";
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
 
@@ -115,6 +116,8 @@ function App() {
           <ProtectedRoute exact path="/shipping" component={Shipping} />
           <ProtectedRoute exact path="/shippingcard" component={Shippingcard} />
           <ProtectedRoute exact path="/vnpay_return" component={VnpayReturn} />
+          <ProtectedRoute exact path="/modalcard" component={ModalCard} />
+          <ProtectedRoute exact path="/modalplaceorder" component={ModalPlaceOrder} />
           <Route exact path="/payment" component={Payment} />
           <Route exact path="/placeorder" component={PlaceOrder} />
           <Route exact path="/placeordercard" component={PlaceOrdercard} />

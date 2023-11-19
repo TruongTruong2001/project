@@ -9,7 +9,7 @@ import BottomTab from "../../../more/BottomTab";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SpeechRecognition from "../../AlanAi/SpeechRecognition";
-const Shippingcard = ({ history, hoten, address, phone, city, province }) => {
+const ModalCard = ({ history, hoten, address, phone, city, province }) => {
   const dispatch = useDispatch();
   const [address1, setAddress] = useState("");
   const [name1, setName] = useState("");
@@ -32,7 +32,7 @@ const Shippingcard = ({ history, hoten, address, phone, city, province }) => {
   return (
     <>
       <MetaData title="Shipping Details" />
-      <Header />
+
       <div className="shippingContainer">
         <div className="shippingBox">
           <h2 className="shippingHeading">Thông tin giao hàng</h2>
@@ -106,4 +106,4 @@ const Shippingcard = ({ history, hoten, address, phone, city, province }) => {
   );
 };
 
-export default Shippingcard;
+export default ModalCard;

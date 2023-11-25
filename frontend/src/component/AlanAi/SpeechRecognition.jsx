@@ -122,6 +122,10 @@ const SpeechRecognition = () => {
       handleConvertTextToSpeech("Thêm sản phẩm thành công");
       // Gọi hàm thêm sản phẩm vào giỏ hàng
       dispatch(addItemsToCart("6536208398f35a26590df0ab", 1));
+    } else if (command.COMMAND === "NAME_PRODUCT_DETAILS") {
+      handleConvertTextToSpeech("Thông tin chi tiết đã mở");
+      // Gọi hàm thêm sản phẩm vào giỏ hàng
+      history.push(`/product/6536208398f35a26590df0ab`);
     } else {
       handleConvertTextToSpeech("Alan Không hiểu! Mời hỏi câu khác");
     }
@@ -140,29 +144,26 @@ const SpeechRecognition = () => {
   return (
     <>
       <div>
-     
-          <div>
-        {currentUrl === '/shippingcard' ? (
-          <ModalCard 
-          hoten={hotenFromRedux}
-          address={addressFromRedux}
-          phone={phoneFromRedux}
-          city={cityFromRedux}
-          province={provinceFromRedux}
-          />
-        ) : currentUrl === '/modalplaceorder' ? (
-          <ModalPlaceOrder 
-          hoten={hotenFromRedux}
-          address={addressFromRedux}
-          phone={phoneFromRedux}
-          city={cityFromRedux}
-          province={provinceFromRedux}
-          />
-        ) : (
-          // Trường hợp mặc định hoặc xử lý khác nếu cần
-          null
-        )}
-      </div>
+        <div>
+          {currentUrl === "/shippingcard" ? (
+            <ModalCard
+              hoten={hotenFromRedux}
+              address={addressFromRedux}
+              phone={phoneFromRedux}
+              city={cityFromRedux}
+              province={provinceFromRedux}
+            />
+          ) : currentUrl === "/modalplaceorder" ? (
+            <ModalPlaceOrder
+              hoten={hotenFromRedux}
+              address={addressFromRedux}
+              phone={phoneFromRedux}
+              city={cityFromRedux}
+              province={provinceFromRedux}
+            />
+          ) : // Trường hợp mặc định hoặc xử lý khác nếu cần
+          null}
+        </div>
         <button id="voice" className="" onClick={handleRecognition}>
           <img
             style={{ margin: "0 120px", width: "100px" }}

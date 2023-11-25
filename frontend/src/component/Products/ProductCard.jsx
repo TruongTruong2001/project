@@ -47,9 +47,8 @@ const ProductCard = ({ product }) => {
           
           </div>
         </div>
-          <Link className="flex justify-center w-full hover:border-b-2 hover:border-orange-600 
-          hover:scale-105 hover:text-white 
-            duration-200 ease"
+          <Link className="flex justify-center w-full hover:no-underline hover:border-orange-600 
+          hover:scale-105 hover:text-white  duration-200 ease"
             to= 
               {`/product/${product._id}`}
             >

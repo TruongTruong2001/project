@@ -7,8 +7,6 @@ import SearchIcon from "@mui/icons-material/Search";
 import Navbar from "./Navbar";
 import logo from "./logo.png";
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import SpeechRecognition from "../AlanAi/SpeechRecognition";
 import ModalView from "../ModalView/ModalView";
@@ -135,7 +133,7 @@ const Header = ({ activeHeading }) => {
             <div
               className="navigation"
               style={{
-                padding: "0px 50px",
+                padding: "3px 50px",
               }}
             >
               <div className="w-[40vmax] relative">

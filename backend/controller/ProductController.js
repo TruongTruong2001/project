@@ -51,7 +51,7 @@ exports.getAdminProducts = catchAsyncErrors(async (req, res, next) => {
 // get All Products
 exports.getAllProducts = catchAsyncErrors(async (req, res) => {
   const page = parseInt(req.query.page) || 1;
-  const limit = parseInt(req.query.limit) || 12;
+  const limit = parseInt(req.query.limit) || 30;
   const subcategory = req.query.subcategory; // Lấy giá trị category từ query params
 
   try {

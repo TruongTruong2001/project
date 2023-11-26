@@ -117,7 +117,11 @@ function App() {
           <ProtectedRoute exact path="/shippingcard" component={Shippingcard} />
           <ProtectedRoute exact path="/vnpay_return" component={VnpayReturn} />
           <ProtectedRoute exact path="/modalcard" component={ModalCard} />
-          <ProtectedRoute exact path="/modalplaceorder" component={ModalPlaceOrder} />
+          <ProtectedRoute
+            exact
+            path="/modalplaceorder"
+            component={ModalPlaceOrder}
+          />
           <Route exact path="/payment" component={Payment} />
           <Route exact path="/placeorder" component={PlaceOrder} />
           <Route exact path="/placeordercard" component={PlaceOrdercard} />

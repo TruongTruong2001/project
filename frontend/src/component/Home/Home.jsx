@@ -39,7 +39,7 @@ const Home = () => {
     </div>
 
         {/* Carousel */}
-        <div className="flex justify-center ">
+        <div className="flex justify-center mb-[3rem] ">
           <div className="banner">
             <Carousel>
               <img

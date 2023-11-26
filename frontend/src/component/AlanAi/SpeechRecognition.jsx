@@ -16,6 +16,7 @@ const SpeechRecognition = () => {
   const alanBtnRef = useRef({}).current;
   const [transcript, setTranscript] = useState("");
   const dispatch = useDispatch();
+  
   const [recognitionTimeout, setRecognitionTimeout] = useState(null);
   const [isDivOpen, setIsDivOpen] = useState(false);
   let history = useHistory();
@@ -31,6 +32,7 @@ const SpeechRecognition = () => {
       headers: {
         "api-key": "4Vjej9D5ONIlxbm6m7GwFu9UK2SMaypw", // Thay YOUR_API_KEY bằng API Key của bạn từ FPT.AI
         "Content-Type": "application/json",
+        voice: "thuminh",
       },
       body: JSON.stringify({
         text: text, // Nội dung bạn muốn chuyển đổi thành âm thanh
@@ -71,7 +73,7 @@ const SpeechRecognition = () => {
       clearTimeout(recognitionTimeout);
 
       // Set a new timeout for restarting recognition every 4 seconds
-      setRecognitionTimeout(setTimeout(restartRecognition, 3000));
+      setRecognitionTimeout(setTimeout(restartRecognition, 2000));
     };
 
     recognition.start();
@@ -138,7 +140,10 @@ const SpeechRecognition = () => {
         handleCommand(command); // Command trả về từ kịch bản trên studio
         console.log(command);
       },
+  
+    
     });
+    
   }, []);
 
   return (

@@ -182,12 +182,11 @@ button.Home__button {
   transition: all 0.5s;
   padding-bottom: 0.5vmax;
 }
-
+/* 
 .ProductCard > div {
-  margin: 0.5vmax;
-  /* display: flex;
-  justify-content: flex-start; */
-}
+  margin: vmax;
+ 
+} */
 .ProductCard > div > span {
   margin: 0.5vmax;
   font: 300 0.7vmax "Roboto";

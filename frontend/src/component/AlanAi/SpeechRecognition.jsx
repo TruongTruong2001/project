@@ -16,7 +16,7 @@ const SpeechRecognition = () => {
   const alanBtnRef = useRef({}).current;
   const [transcript, setTranscript] = useState("");
   const dispatch = useDispatch();
-  
+  const [isRecording, setIsRecording] = useState(false);
   const [recognitionTimeout, setRecognitionTimeout] = useState(null);
   const [isDivOpen, setIsDivOpen] = useState(false);
   let history = useHistory();
@@ -56,6 +56,10 @@ const SpeechRecognition = () => {
     recognition.lang = "vi-VI";
     recognition.continuous = false;
 
+    recognition.onstart = () => {
+      setIsRecording(true);
+    };
+
     recognition.onresult = (e) => {
       const transcriptWithoutDiacritics1 = e.results[0][0].transcript;
       const transcriptWithoutDiacritics = e.results[0][0].transcript
@@ -68,18 +72,31 @@ const SpeechRecognition = () => {
 
       alanBtnRef.btnInstance.sendText(transcriptWithoutDiacritics);
       setTranscript(transcriptWithoutDiacritics1);
+    };
+    recognition.onend = () => {
+      // Thay đổi trạng thái khi kết thúc ghi âm
+      setIsRecording(false);
+
+      // Kiểm tra nếu thời gian ghi âm đã hết
+      if (recognitionTimeout) {
+        // Thực hiện các hành động khi hết thời gian ghi âm
+        console.log("Hết thời gian ghi âm.");
+
+        // Cập nhật state hoặc thực hiện các hành động khác tùy vào yêu cầu của bạn
+      }
 
       // Clear the previous timeout to avoid multiple restarts
       clearTimeout(recognitionTimeout);
 
       // Set a new timeout for restarting recognition every 4 seconds
-      setRecognitionTimeout(setTimeout(restartRecognition, 2000));
     };
 
     recognition.start();
 
     // Save the recognition instance to use it later for stopping
     alanBtnRef.recognitionInstance = recognition;
+
+    setRecognitionTimeout(setTimeout(restartRecognition, 3000));
   };
 
   // Function to restart recognition
@@ -140,24 +157,39 @@ const SpeechRecognition = () => {
         handleCommand(command); // Command trả về từ kịch bản trên studio
         console.log(command);
       },
-  
-    
     });
-    
   }, []);
 
   return (
     <>
-      <div>
-        <div>
+      <div className="mt-[-50px]">
+        <div className="">
           {currentUrl === "/shippingcard" ? (
-            <ModalCard
-              hoten={hotenFromRedux}
-              address={addressFromRedux}
-              phone={phoneFromRedux}
-              city={cityFromRedux}
-              province={provinceFromRedux}
-            />
+            <>
+              <ModalCard
+                hoten={hotenFromRedux}
+                address={addressFromRedux}
+                phone={phoneFromRedux}
+                city={cityFromRedux}
+                province={provinceFromRedux}
+              />
+              <div className=" mt-[10px]  mx-[15rem]">
+                <button className="w-[10rem] " onClick={handleRecognition}>
+                  <img
+                    className="w-[5rem]"
+                    src="https://cdn-icons-png.flaticon.com/128/3128/3128290.png"
+                    alt=""
+                  />
+                  <div>
+                    {isRecording ? (
+                      <div>Đang lắng nghe...</div>
+                    ) : (
+                      <p>{transcript}</p>
+                    )}
+                  </div>
+                </button>
+              </div>
+            </>
           ) : currentUrl === "/modalplaceorder" ? (
             <ModalPlaceOrder
               hoten={hotenFromRedux}
@@ -166,17 +198,30 @@ const SpeechRecognition = () => {
               city={cityFromRedux}
               province={provinceFromRedux}
             />
-          ) : // Trường hợp mặc định hoặc xử lý khác nếu cần
-          null}
+          ) : (
+            // Trường hợp mặc định hoặc xử lý khác nếu cần
+
+            <div className="mt-[8vmax] mx-[8rem] ">
+              <button
+                className="w-[20rem] border mx-[15px] "
+                onClick={handleRecognition}
+              >
+                <img
+                  className="mx-[6rem] "
+                  src="https://cdn-icons-png.flaticon.com/128/3128/3128290.png"
+                  alt=""
+                />
+                <div>
+                  {isRecording ? (
+                    <div>Đang lắng nghe...</div>
+                  ) : (
+                    <p>{transcript}</p>
+                  )}
+                </div>
+              </button>
+            </div>
+          )}
         </div>
-        <button id="voice" className="" onClick={handleRecognition}>
-          <img
-            style={{ margin: "0 120px", width: "100px" }}
-            src="https://cdn-icons-png.flaticon.com/128/3128/3128290.png"
-            alt=""
-          />
-          <p>{transcript}</p>
-        </button>
       </div>
     </>
   );

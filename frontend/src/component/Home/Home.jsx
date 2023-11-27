@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Home.css";
 import Carousel from "react-material-ui-carousel";
 import ProductCard from "../Products/ProductCard";
@@ -30,13 +30,11 @@ const Home = () => {
 
         <Header activeHeading={1} />
         <div>
-      {/* Your other components */}
-      {isCartOpen && (
-        <ModalView onClose={() => setIsCartOpen(true)}>
-        
-        </ModalView>
-      )}
-    </div>
+          {/* Your other components */}
+          {isCartOpen && (
+            <ModalView onClose={() => setIsCartOpen(true)}></ModalView>
+          )}
+        </div>
 
         {/* Carousel */}
         <div className="flex justify-center mb-[3rem] ">

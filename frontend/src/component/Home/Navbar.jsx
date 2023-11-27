@@ -11,7 +11,7 @@ const Navbar = ({ active }) => {
             to={i.url}
             className={`${
               active === index + 1
-                ? "  bg-[#008848]  text-white hover:no-underline hover:white"
+                ? "  bg-[#008848]  text-white hover:no-underline"
                 : "black hover:no-underline"
             } flex  h-[50%]  w-[12%]  p-2 border  rounded-lg m-2 mb-4  justify-center items-center`}
           >

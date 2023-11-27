@@ -10,7 +10,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { setHoten } from "../../../actions/AlanActions";
 
-const Shipping = ({ history , hoten}) => {
+const Shipping = ({ history, hoten }) => {
   const dispatch = useDispatch();
 
   const { shippingInfo } = useSelector((state) => state.cart);
@@ -32,7 +32,6 @@ const Shipping = ({ history , hoten}) => {
       history.push("/placeorder");
     }
   };
-  
 
   return (
     <>

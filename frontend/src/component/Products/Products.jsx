@@ -15,7 +15,6 @@ import BottomTab from "../../more/BottomTab";
 
 import { categoriesData } from "../Admin/Product/sidebarData";
 import Sidebar from "../Admin/Product/Sidebar";
-import ListIcon from "@mui/icons-material/List";
 
 const Products = ({ match }) => {
   const dispatch = useDispatch();
@@ -137,6 +136,7 @@ const Products = ({ match }) => {
             >
               <Pagination
                 activePage={currentPage}
+                style
                 itemsCountPerPage={6}
                 totalItemsCount={totalPages * 10}
                 pageRangeDisplayed={3}

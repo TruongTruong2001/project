@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { removeItemsFromCart } from "../../actions/CartAction";
-function ModalView({isDivOpen}) {
+function ModalView({ isDivOpen }) {
   const [showCartItems, setShowCartItems] = useState(false);
   const dispatch = useDispatch();
   const { cartItems } = useSelector((state) => state.cart);
@@ -23,10 +23,9 @@ function ModalView({isDivOpen}) {
   const deleteCartItems = (id) => {
     dispatch(removeItemsFromCart(id));
   };
-  
+
   return (
-   
-       <section className="   mt-[50px] mr-[30px] justify-center flex">
+    <section className=" mt-[50px] mr-[30px] justify-center flex">
       <div className=" mr-[200px]  absolute h-full w-[25rem] ">
         <div className=" bg-white text-gray-700 body-font shadow-lg border rounded-lg">
           <div className="overflow-y-scroll h-[15rem] pt-2">
@@ -52,23 +51,26 @@ function ModalView({isDivOpen}) {
             </td>
           </div>
 
-          <button className="text-white py-2 px-4 text-lg bg-purple-500 rounded hover:bg-purple-700 m-4">
-            <Link className="hover:no-underline hover:text-green-400" to="/cart">
+          <button className="text-white py-2 px-4 text-lg bg-red-500 rounded hover:bg-red-700 m-4">
+            <Link
+              className="hover:no-underline hover:text-green-400"
+              to="/cart"
+            >
               Xem giỏ hàng
             </Link>
           </button>
 
-          <button className="text-white py-2 px-4 text-lg bg-purple-500 rounded hover:bg-purple-700 m-4">
-          <Link className="hover:no-underline hover:text-green-400" to="/shipping">
+          <button className="text-white py-2 px-4 text-lg bg-red-500 rounded hover:bg-red-700 m-4">
+            <Link
+              className="hover:no-underline hover:text-green-400"
+              to="/shipping"
+            >
               Thanh toán
             </Link>
           </button>
         </div>
       </div>
     </section>
-    
-
-   
   );
 }
 

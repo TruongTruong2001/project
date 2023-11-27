@@ -6,23 +6,23 @@ import { useSelector, useDispatch } from "react-redux";
 import SearchIcon from "@mui/icons-material/Search";
 import Navbar from "./Navbar";
 import logo from "./logo.png";
-import Box from '@mui/material/Box';
-import Modal from '@mui/material/Modal';
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
 import SpeechRecognition from "../AlanAi/SpeechRecognition";
 import ModalView from "../ModalView/ModalView";
 
 const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 650,
+  height:350,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
   boxShadow: 24,
   p: 4,
 };
-
 
 const Header = ({ activeHeading }) => {
   const { cartItems } = useSelector((state) => state.cart);
@@ -58,11 +58,11 @@ const Header = ({ activeHeading }) => {
     };
 
     // Đăng ký sự kiện mousedown cho toàn bộ document
-    document.addEventListener('mousedown', handleMouseDown);
+    document.addEventListener("mousedown", handleMouseDown);
 
     return () => {
       // Hủy đăng ký sự kiện khi component unmount
-      document.removeEventListener('mousedown', handleMouseDown);
+      document.removeEventListener("mousedown", handleMouseDown);
     };
   }, []); // Chạy một lần khi component được mount
   useEffect(() => {
@@ -100,19 +100,17 @@ const Header = ({ activeHeading }) => {
   return (
     <>
       <div>
-   
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-         <SpeechRecognition />
-
-        </Box>
-      </Modal>
-    </div>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <SpeechRecognition />
+          </Box>
+        </Modal>
+      </div>
       <div className="Header relative">
         <div className="Header__topbar space__beetween ">
           <div className="w-[250px] pxy-8 flex mb-2 ml-8 ">
@@ -192,9 +190,13 @@ const Header = ({ activeHeading }) => {
               </div>
             </div>
             <div onClick={handleOpen}>
-            <img style={{width:"30px"}} src="https://cdn-icons-png.flaticon.com/128/3128/3128290.png" alt="" />
+              <img
+                style={{ width: "30px" }}
+                src="https://cdn-icons-png.flaticon.com/128/3128/3128290.png"
+                alt=""
+              />
             </div>
-          
+
             <div className="rightOption flex align__items__center">
               <div className="heart__products flex pointer relative">
                 <Link to="/favourites">
@@ -273,9 +275,9 @@ const Header = ({ activeHeading }) => {
                   >
                     <span className=" fixed">{cartItems.length}</span>
 
-                    <div  ref={divRef}  style={{ height: "1rem" }}>
+                    <div ref={divRef} style={{ height: "1rem" }}>
                       {isToggled && (
-                        <ModalView   style={{ border: "1px solid red" }} />
+                        <ModalView style={{ border: "1px solid red" }} />
                       )}
                     </div>
                   </div>

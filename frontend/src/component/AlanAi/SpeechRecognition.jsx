@@ -48,13 +48,14 @@ const SpeechRecognition = () => {
         console.error("Error:", error);
       });
   };
-
   const handleRecognition = () => {
     let SpeechRecognition =
       window.SpeechRecognition || window.webkitSpeechRecognition;
     let recognition = new SpeechRecognition();
     recognition.lang = "vi-VI";
     recognition.continuous = false;
+
+    let recognitionTimeout;
 
     recognition.onstart = () => {
       setIsRecording(true);
@@ -72,39 +73,44 @@ const SpeechRecognition = () => {
 
       alanBtnRef.btnInstance.sendText(transcriptWithoutDiacritics);
       setTranscript(transcriptWithoutDiacritics1);
+
+      // Clear the previous timeout to avoid restarting during user input
+      clearTimeout(recognitionTimeout);
+
+      // Set a new timeout for restarting recognition every 4 seconds
+      recognitionTimeout = setTimeout(() => {
+        // Stop recording after 3 seconds
+        recognition.stop();
+      }, 3000);
     };
+
     recognition.onend = () => {
       // Thay đổi trạng thái khi kết thúc ghi âm
       setIsRecording(false);
-
-      // Kiểm tra nếu thời gian ghi âm đã hết
-      if (recognitionTimeout) {
-        // Thực hiện các hành động khi hết thời gian ghi âm
-        console.log("Hết thời gian ghi âm.");
-
-        // Cập nhật state hoặc thực hiện các hành động khác tùy vào yêu cầu của bạn
-      }
 
       // Clear the previous timeout to avoid multiple restarts
       clearTimeout(recognitionTimeout);
 
       // Set a new timeout for restarting recognition every 4 seconds
+      recognitionTimeout = setTimeout(() => {
+        recognition.start();
+      }, 3000);
     };
+
+    recognition.onerror = (e) => {
+      console.error("Error during recognition:", e.error);
+      recognition.stop();
+    };
+
+    // Start a timeout to stop recording after 4 seconds
+    const stopRecordingTimeout = setTimeout(() => {
+      recognition.stop();
+    }, 4000);
 
     recognition.start();
 
     // Save the recognition instance to use it later for stopping
     alanBtnRef.recognitionInstance = recognition;
-
-    setRecognitionTimeout(setTimeout(restartRecognition, 3000));
-  };
-
-  // Function to restart recognition
-  const restartRecognition = () => {
-    // Abort the recognition instead of stopping it
-    alanBtnRef.recognitionInstance.abort();
-    // Start the recognition again
-    alanBtnRef.recognitionInstance.start();
   };
 
   const handleCommand = (command) => {

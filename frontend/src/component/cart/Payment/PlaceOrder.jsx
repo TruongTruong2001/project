@@ -14,11 +14,8 @@ import Header from "../../Home/Header";
 export default function PlaceOrder({ history }) {
   window.scrollTo(0, 0);
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.user);
-  const { shippingInfo, cartItems, paymentInfo1 } = useSelector(
-    (state) => state.cart
-  );
-  const [method, setMethod] = useState(paymentInfo1.method);
+  const { shippingInfo, cartItems } = useSelector((state) => state.cart);
+  const [method, setMethod] = useState("");
 
   const cart = useSelector((state) => state.cart);
 
@@ -31,8 +28,6 @@ export default function PlaceOrder({ history }) {
   cart.shippingCharges = cart.itemsPrice < 150000 ? 20000 : 0;
   cart.totalPrice = subtotal + cart.shippingCharges;
 
-  const address = `${shippingInfo.address},${shippingInfo.name}, ${shippingInfo.state}, ${shippingInfo.country}`;
-
   const orderCreate = useSelector((state) => state.orderCreate);
   const { order, success, error, loading } = orderCreate;
   useEffect(() => {
@@ -40,16 +35,19 @@ export default function PlaceOrder({ history }) {
       history.push(`order/$(order._id)`);
       dispatch({ type: ORDER_CREATE_RESET });
     }
-  }, [history, dispatch, success, order]);
+    console.log(method);
+  }, [history, dispatch, method, success, order]);
   const placeOrderHandler = () => {
     if (method === "Thanh toán bằng VnPay") {
       history.push(`/vnpay`);
-    } else if (method === "Thanh toán khi giao hàng (COD)") {
+    } else  {
       dispatch(
         createOrder({
           orderItems: cart.cartItems,
           shippingInfo: cart.shippingInfo,
-          paymentInfo1: cart.paymentInfo1,
+          paymentInfo1:{method:"Thanh toán khi giao hàng (COD) "
+          
+          } ,
           itemsPrice: cart.itemsPrice,
           shippingPrice: cart.shippingCharges,
           taxPrice: cart.taxPrice,
@@ -90,10 +88,16 @@ export default function PlaceOrder({ history }) {
                       <span>{shippingInfo.address}</span>
                     </div>
                     <div className=" my-[5px]">
-                      <p className="mr-[160px] text-black">
+                      <p className="mr-[160px] text-black  ">
                         Nhập ghi chú nếu có:
                       </p>
-                      <textarea name="" id="" cols="70" rows="1"></textarea>
+                      <textarea
+                        className="mt-[10px] border"
+                        name=""
+                        id=""
+                        cols="70"
+                        rows="3"
+                      ></textarea>
                     </div>
                   </div>
                 </div>
@@ -111,7 +115,8 @@ export default function PlaceOrder({ history }) {
                             <input
                               type="radio"
                               name="method"
-                              value="Thanh toán khi giao hàng (COD)"
+                              value="Thanh toán khi giao hàng (COD) "
+                              defaultChecked
                               onChange={(e) => setMethod(e.target.value)}
                             />
                             <img

@@ -62,6 +62,7 @@ import SpeechRecognition from "./component/AlanAi/SpeechRecognition";
 import PlaceOrdercard from "./component/cart/Payment/PlaceOrdercard";
 import ModalCard from "./component/cart/Payment/ModalCard";
 import ModalPlaceOrder from "./component/cart/Payment/ModalPlaceOrder";
+
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
 
@@ -108,6 +109,7 @@ function App() {
           <ProtectedRoute exact path="/chatgpt3" component={Chatgpt3} />
           <Route exact path="/password/forgot" component={ForgotPassword} />
           <Route exact path="/speech" component={SpeechRecognition} />
+
           <Route
             exact
             path="/password/reset/:token"
@@ -139,6 +141,7 @@ function App() {
           />
           <ProtectedRoute exact path="/success" component={Success} />
           <ProtectedRoute exact path="/orders" component={MyOrder} />
+
           <ProtectedRoute exact path="/order/:id" component={MyOrderDetails} />
           <ProtectedRoute
             isAdmin={true}

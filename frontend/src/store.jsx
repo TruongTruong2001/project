@@ -82,9 +82,9 @@ let initialState = {
     shippingInfo: localStorage.getItem("shippingInfo")
       ? JSON.parse(localStorage.getItem("shippingInfo"))
       : {},
-      paymentInfo1: localStorage.getItem("paymentInfo1")
-      ? JSON.parse(localStorage.getItem("paymentInfo1"))
-      : {},
+      // paymentInfo1: localStorage.getItem("paymentInfo1")
+      // ? JSON.parse(localStorage.getItem("paymentInfo1"))
+      // : {},
     
 
    

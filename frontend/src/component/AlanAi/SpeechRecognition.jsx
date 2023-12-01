@@ -77,24 +77,15 @@ const SpeechRecognition = () => {
       // Clear the previous timeout to avoid restarting during user input
       clearTimeout(recognitionTimeout);
 
-      // Set a new timeout for restarting recognition every 4 seconds
+      // Set a new timeout for stopping recognition after 3 seconds if the user doesn't speak again
       recognitionTimeout = setTimeout(() => {
-        // Stop recording after 3 seconds
         recognition.stop();
       }, 3000);
     };
 
     recognition.onend = () => {
-      // Thay đổi trạng thái khi kết thúc ghi âm
+      // Change the state when recording ends
       setIsRecording(false);
-
-      // Clear the previous timeout to avoid multiple restarts
-      clearTimeout(recognitionTimeout);
-
-      // Set a new timeout for restarting recognition every 4 seconds
-      recognitionTimeout = setTimeout(() => {
-        recognition.start();
-      }, 3000);
     };
 
     recognition.onerror = (e) => {
@@ -102,10 +93,10 @@ const SpeechRecognition = () => {
       recognition.stop();
     };
 
-    // Start a timeout to stop recording after 4 seconds
+    // Start a timeout to stop recording after 3 seconds
     const stopRecordingTimeout = setTimeout(() => {
       recognition.stop();
-    }, 4000);
+    }, 3000);
 
     recognition.start();
 
@@ -168,8 +159,8 @@ const SpeechRecognition = () => {
 
   return (
     <>
-      <div className="mt-[-50px]">
-        <div className="">
+      <div className="">
+        <div className="mt-[-80px]">
           {currentUrl === "/shippingcard" ? (
             <>
               <ModalCard
@@ -179,18 +170,21 @@ const SpeechRecognition = () => {
                 city={cityFromRedux}
                 province={provinceFromRedux}
               />
-              <div className=" mt-[10px]  mx-[15rem]">
-                <button className="w-[10rem] " onClick={handleRecognition}>
+              <div className=" mt-[10px]  mx-[9rem]">
+                <button
+                  className="w-[17rem] px-[6rem]  "
+                  onClick={handleRecognition}
+                >
                   <img
                     className="w-[5rem]"
                     src="https://cdn-icons-png.flaticon.com/128/3128/3128290.png"
                     alt=""
                   />
-                  <div>
+                  <div className="w-[5rem]">
                     {isRecording ? (
                       <div>Đang lắng nghe...</div>
                     ) : (
-                      <p>{transcript}</p>
+                      <p >{transcript}</p>
                     )}
                   </div>
                 </button>
@@ -207,7 +201,7 @@ const SpeechRecognition = () => {
           ) : (
             // Trường hợp mặc định hoặc xử lý khác nếu cần
 
-            <div className="mt-[8vmax] mx-[8rem] ">
+            <div className="mt-[10vmax] mx-[8rem] ">
               <button
                 className="w-[20rem] border mx-[15px] "
                 onClick={handleRecognition}

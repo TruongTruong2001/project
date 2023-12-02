@@ -11,7 +11,7 @@ import { setCity } from "../../actions/AlanActions";
 import { setProvince } from "../../actions/AlanActions";
 import ModalCard from "../cart/Payment/ModalCard";
 import ModalPlaceOrder from "../cart/Payment/ModalPlaceOrder";
-import Shippingcard from "../cart/Payment/Shippingcard";
+
 const SpeechRecognition = () => {
   const alanBtnRef = useRef({}).current;
   const [transcript, setTranscript] = useState("");
@@ -30,7 +30,7 @@ const SpeechRecognition = () => {
     fetch("https://api.fpt.ai/hmi/tts/v5", {
       method: "POST",
       headers: {
-        "api-key": "4Vjej9D5ONIlxbm6m7GwFu9UK2SMaypw", // Thay YOUR_API_KEY bằng API Key của bạn từ FPT.AI
+        "api-key": "KLfjSmcLKcIscOC3jkieZB1LjdeUmPIo", // Thay YOUR_API_KEY bằng API Key của bạn từ FPT.AI
         "Content-Type": "application/json",
         voice: "thuminh",
       },
@@ -63,7 +63,7 @@ const SpeechRecognition = () => {
 
     recognition.onresult = (e) => {
       const transcriptWithoutDiacritics1 = e.results[0][0].transcript;
-      const transcriptWithoutDiacritics = e.results[0][0].transcript
+      const transcriptWithoutDiacritics = transcriptWithoutDiacritics1
         .normalize("NFD")
         .replace(/[\u0300-\u036f]/g, "")
         .replace(/đ/g, "d")
@@ -77,12 +77,15 @@ const SpeechRecognition = () => {
       // Clear the previous timeout to avoid restarting during user input
       clearTimeout(recognitionTimeout);
 
-      // Set a new timeout for stopping recognition after 3 seconds if the user doesn't speak again
+      // Set a new timeout for stopping recognition after 4 seconds of user inactivity
       recognitionTimeout = setTimeout(() => {
-        recognition.stop();
+        // Check if there is any speech input
+        if (!recognition.isListening) {
+          // No speech input, restart recognition
+          recognition.start();
+        }
       }, 3000);
     };
-
     recognition.onend = () => {
       // Change the state when recording ends
       setIsRecording(false);
@@ -91,12 +94,8 @@ const SpeechRecognition = () => {
     recognition.onerror = (e) => {
       console.error("Error during recognition:", e.error);
       recognition.stop();
+      setIsRecording(false); // Ensure recording state is updated in case of an error
     };
-
-    // Start a timeout to stop recording after 3 seconds
-    const stopRecordingTimeout = setTimeout(() => {
-      recognition.stop();
-    }, 3000);
 
     recognition.start();
 
@@ -130,7 +129,7 @@ const SpeechRecognition = () => {
     } else if (command.COMMAND === "THONG_TIN_PROVINCE") {
       console.log(command.COMMAND);
       dispatch(setProvince(command.payload.province));
-      history.push("/modalplaceorder");
+      history.push("/placeorder");
       handleConvertTextToSpeech(
         "Vui lòng chọn phương thức thanh toán và nhấn đặt hàng"
       );
@@ -184,7 +183,7 @@ const SpeechRecognition = () => {
                     {isRecording ? (
                       <div>Đang lắng nghe...</div>
                     ) : (
-                      <p >{transcript}</p>
+                      <p>{transcript}</p>
                     )}
                   </div>
                 </button>

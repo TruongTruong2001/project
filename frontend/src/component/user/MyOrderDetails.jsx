@@ -7,7 +7,7 @@ import { Typography } from "@material-ui/core";
 import { getOrderDetails, clearErrors } from "../../actions/OrderAction";
 import Loading from "../../more/Loader.jsx";
 import BottomTab from "../../more/BottomTab.jsx";
-
+import "./Bill.css";
 // import { PayPalButton } from "react-paypal-button-v2";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";

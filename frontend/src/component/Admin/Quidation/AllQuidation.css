@@ -9,7 +9,7 @@
    overflow: scroll; 
   }
   .MuiDataGrid-columnHeader{
-    background: #3BB77E;
+    background: #31C681;
     width: 2rem;
   }
   
@@ -33,6 +33,7 @@
     font: 300 1vmax "Roboto";
     color: rgba(0, 0, 0, 0.678);
     border: none !important;
+    
 
   }
   
@@ -59,11 +60,10 @@
     border-bottom: 2px solid #dee2e6;
     background-color: #3BB77E;
     color:white;
+    border:10px solid red
    
   }
-  .table input{
-    width: 30%;
-  }
+  
 .red {
   color: red;
 }

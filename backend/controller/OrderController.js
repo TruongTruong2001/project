@@ -5,6 +5,22 @@ const Product = require("../models/ProductModel");
 const moment = require("moment");
 // Create Order
 
+function sortObject(obj) {
+  let sorted = {};
+  let str = [];
+  let key;
+  for (key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      str.push(encodeURIComponent(key));
+    }
+  }
+  str.sort();
+  for (key = 0; key < str.length; key++) {
+    sorted[str[key]] = encodeURIComponent(obj[str[key]]).replace(/%20/g, "+");
+  }
+  return sorted;
+}
+
 exports.createOrder = catchAsyncErrors(async (req, res, next) => {
   const {
     shippingInfo,
@@ -56,7 +72,6 @@ exports.createOrderVnpay = catchAsyncErrors(async (req, res, next) => {
   let orderId = moment(date).format("DDHHmmss");
   let amount = req.body.amount;
   let bankCode = req.body.bankCode;
- 
 
   let locale = req.body.language;
   if (locale === null || locale === "") {
@@ -89,11 +104,9 @@ exports.createOrderVnpay = catchAsyncErrors(async (req, res, next) => {
   let signed = hmac.update(new Buffer(signData, "utf-8")).digest("hex");
   vnp_Params["vnp_SecureHash"] = signed;
   vnpUrl += "?" + querystring.stringify(vnp_Params, { encode: false });
-   
+
   // Send the vnpUrl as a response to the frontend
   res.status(200).json({ vnpUrl });
-
-  
 });
 
 //lấy infor
